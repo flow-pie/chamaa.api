@@ -138,9 +138,6 @@ chore(license): add third-party acknowledgments
 
 > Use `chore:` to separate legal work from code commits.
 
-Perfect 👌 — here’s a clean **DCO section** you can drop straight into your `CONTRIBUTING.md` file.
-It’s concise, professional, and matches your current markdown style:
-
 ---
 
 ## Legal: Developer Certificate of Origin (DCO)
