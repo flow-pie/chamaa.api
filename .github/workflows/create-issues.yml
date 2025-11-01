@@ -1,0 +1,36 @@
+name: Create Issues from YAML
+
+on:
+  workflow_dispatch:  # you can trigger manually
+  push:
+    paths:
+      - "github-issues.yaml"  # run when the YAML changes
+
+jobs:
+  create_issues:
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: write   # needed to create issues
+      contents: read
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install yq
+        run: |
+          sudo wget https://github.com/mikefarah/yq/releases/download/v4.44.2/yq_linux_amd64 -O /usr/local/bin/yq
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Read and create GitHub issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yq -o=json '.issues[]' github-issues.yaml | while read -r issue; do
+            title=$(echo "$issue" | yq -r '.title')
+            body=$(echo "$issue" | yq -r '.body')
+            labels=$(echo "$issue" | yq -r '.labels | join(",")')
+            echo "Creating issue: $title"
+            gh issue create --title "$title" --body "$body" --label "$labels" || true
+          done
