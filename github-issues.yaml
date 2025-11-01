@@ -6,6 +6,316 @@ issues:
   - title: Initialize Android project (Java, MVVM)
     body: Create base Android project with Room DB + ViewModel skeleton and Retrofit setup.
     labels: [android, setup]
+issues:
+  - title: Initialize Node.js backend project
+    body: Setup Express server, ESLint, Prettier, and dotenv for config.
+    labels:
+      - backend
+      - setup
+
+  - title: Initialize Android project (Java, MVVM)
+    body: Create base Android project with Room DB + ViewModel skeleton and Retrofit setup.
+    labels:
+      - android
+      - setup
+
+  - title: Setup GitHub Actions CI/CD
+    body: Linting + Tests pipeline for Node.js and Android builds.
+    labels:
+      - devops
+
+  - title: Research & choose blockchain framework
+    body: Compare Ethereum (Polygon testnet) vs Hyperledger Fabric. Decide final stack.
+    labels:
+      - blockchain
+      - research
+
+  - title: Setup blockchain node connection
+    body: Connect backend with blockchain node using Web3.js SDK.
+    labels:
+      - blockchain
+      - backend
+
+  - title: Write basic smart contract
+    body: Implement contribution + withdrawal ledger. Loan rules placeholder.
+    labels:
+      - blockchain
+      - smart-contract
+
+  - title: Deploy smart contract on testnet
+    body: Deploy contract to Polygon Mumbai or Ganache local dev.
+    labels:
+      - blockchain
+      - deployment
+
+  - title: Integrate backend with smart contract
+    body: Use Web3.js to interact with contracts from Node.js backend.
+    labels:
+      - backend
+      - blockchain
+
+  - title: Setup database (MongoDB/Postgres)
+    body: Store off-chain data like user profiles and group metadata.
+    labels:
+      - backend
+      - database
+
+  - title: Implement user model
+    body: Profile, wallet, phone/email, KYC placeholder.
+    labels:
+      - backend
+
+  - title: Implement group model
+    body: Group name, members, and rules.
+    labels:
+      - backend
+
+  - title: Implement transaction model
+    body: Contributions, loans, repayments structure.
+    labels:
+      - backend
+
+  - title: API: User registration & login
+    body: Firebase Auth integration (email/phone).
+    labels:
+      - backend
+      - auth
+
+  - title: API: Create group + join group
+    body: Implement group creation and membership logic.
+    labels:
+      - backend
+      - api
+
+  - title: API: Make contribution
+    body: On-chain + off-chain record handling.
+    labels:
+      - backend
+      - api
+      - blockchain
+
+  - title: API: Request loan
+    body: Submit loan request for approval.
+    labels:
+      - backend
+      - api
+
+  - title: API: Approve/reject loan (voting system)
+    body: Members vote on loan approval. Record votes on blockchain.
+    labels:
+      - backend
+      - api
+      - governance
+
+  - title: API: Loan repayment + penalties
+    body: Handle repayments and late payment penalties.
+    labels:
+      - backend
+      - api
+
+  - title: API: Transaction history
+    body: Fetch user/group transactions with filters.
+    labels:
+      - backend
+      - api
+
+  - title: Integrate M-Pesa Daraja API
+    body: Deposit/withdraw via Safaricom M-Pesa.
+    labels:
+      - payments
+      - backend
+
+  - title: Integrate Airtel Money API
+    body: Add Airtel Money payment gateway.
+    labels:
+      - payments
+      - backend
+
+  - title: Integrate PayPal REST API
+    body: Enable diaspora contributions with PayPal.
+    labels:
+      - payments
+      - backend
+
+  - title: Abstract payment service layer
+    body: Create modular service to support multiple gateways.
+    labels:
+      - backend
+      - payments
+
+  - title: Sync wallet balances
+    body: Merge blockchain on-chain + off-chain fiat balance.
+    labels:
+      - backend
+      - blockchain
+
+  - title: Android: User registration & login
+    body: Firebase Auth login screen + backend sync.
+    labels:
+      - android
+      - auth
+
+  - title: Android: Create/join chama group UI
+    body: UI for group management.
+    labels:
+      - android
+      - ui
+
+  - title: Android: Wallet balance screen
+    body: Display on-chain + off-chain balance.
+    labels:
+      - android
+      - ui
+
+  - title: Android: Contribution screen
+    body: UI to contribute via M-Pesa, Airtel, or PayPal.
+    labels:
+      - android
+      - ui
+      - payments
+
+  - title: Android: Loan request screen
+    body: Request loan form + backend integration.
+    labels:
+      - android
+      - ui
+
+  - title: Android: Loan approval voting screen
+    body: UI for members to vote on loan requests.
+    labels:
+      - android
+      - ui
+      - governance
+
+  - title: Android: Transaction history screen
+    body: Display past contributions, loans, repayments (with Room DB cache).
+    labels:
+      - android
+      - ui
+
+  - title: Android: Push notifications
+    body: Firebase Cloud Messaging integration.
+    labels:
+      - android
+      - notifications
+
+  - title: Android: Profile & settings UI
+    body: Manage user details, wallet, and app preferences.
+    labels:
+      - android
+      - ui
+
+  - title: Smart contract: enforce contribution rules
+    body: Define minimum contributions, deadlines.
+    labels:
+      - blockchain
+      - smart-contract
+
+  - title: Smart contract: repayment deadlines & penalties
+    body: Add penalty logic into contract.
+    labels:
+      - blockchain
+      - smart-contract
+
+  - title: Backend: cron job for overdue loans
+    body: Auto-detect overdue loans and apply penalties.
+    labels:
+      - backend
+      - automation
+
+  - title: Record & display voting history
+    body: Store immutable voting results and display in app.
+    labels:
+      - governance
+      - backend
+
+  - title: Encrypt sensitive data
+    body: Encrypt wallet keys and API tokens.
+    labels:
+      - security
+      - backend
+
+  - title: Role-based access control
+    body: Admin vs member permissions.
+    labels:
+      - security
+      - backend
+
+  - title: Fraud prevention
+    body: Prevent double spending and duplicate records.
+    labels:
+      - security
+      - backend
+
+  - title: Audit logging
+    body: Every transaction is logged for traceability.
+    labels:
+      - security
+      - backend
+
+  - title: Dockerize backend + DB
+    body: Write Dockerfiles for backend and database.
+    labels:
+      - devops
+      - backend
+
+  - title: Deploy backend to cloud
+    body: Deploy to Heroku/Vercel/AWS.
+    labels:
+      - devops
+      - deployment
+
+  - title: Deploy contracts to testnet
+    body: Deploy contracts to Polygon Mumbai testnet.
+    labels:
+      - blockchain
+      - deployment
+
+  - title: Distribute Android APK
+    body: Release alpha APK to testers.
+    labels:
+      - android
+      - deployment
+
+  - title: Write unit tests
+    body: Backend + Android unit tests.
+    labels:
+      - testing
+
+  - title: Write integration tests
+    body: End-to-end test (mobile money → blockchain → wallet).
+    labels:
+      - testing
+
+  - title: Investment pooling feature
+    body: Enable group investment voting and execution.
+    labels:
+      - feature
+      - governance
+
+  - title: NFT-based member IDs
+    body: Issue NFT identity badges for members.
+    labels:
+      - feature
+      - blockchain
+
+  - title: Analytics dashboard
+    body: Charts for contributions, loans, repayments.
+    labels:
+      - feature
+      - analytics
+
+  - title: Multi-language support
+    body: Add English/Swahili translations.
+    labels:
+      - feature
+      - i18n
+
+  - title: AI-powered credit scoring
+    body: Machine learning risk scoring model for loan approvals.
+    labels:
+      - feature
+      - ai
 
   - title: Setup GitHub Actions CI/CD
     body: Linting + Tests pipeline for Node.js and Android builds.

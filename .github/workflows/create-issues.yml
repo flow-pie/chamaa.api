@@ -1,36 +1,30 @@
-name: Create Issues from YAML
-
+name: 📥 Import Issues from YAML
 on:
-  workflow_dispatch:  # you can trigger manually
-  push:
-    paths:
-      - "github-issues.yaml"  # run when the YAML changes
+  workflow_dispatch:
 
 jobs:
-  create_issues:
+  import-issues:
     runs-on: ubuntu-latest
-
     permissions:
-      issues: write   # needed to create issues
-      contents: read
-
+      issues: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install yq
-        run: |
-          sudo wget https://github.com/mikefarah/yq/releases/download/v4.44.2/yq_linux_amd64 -O /usr/local/bin/yq
-          sudo chmod +x /usr/local/bin/yq
+      - name: Setup yq & jq
+        run: sudo apt-get install -y yq jq
 
-      - name: Read and create GitHub issues
+      - name: Create issues from YAML
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yq -o=json '.issues[]' github-issues.yaml | while read -r issue; do
-            title=$(echo "$issue" | yq -r '.title')
-            body=$(echo "$issue" | yq -r '.body')
-            labels=$(echo "$issue" | yq -r '.labels | join(",")')
-            echo "Creating issue: $title"
-            gh issue create --title "$title" --body "$body" --label "$labels" || true
+            title=$(echo "$issue" | jq -r '.title')
+            body=$(echo "$issue" | jq -r '.body')
+            labels=$(echo "$issue" | jq -r '.labels | join(",")')
+
+            if [[ -n "$title" ]]; then
+              echo "🪶 Creating issue: $title"
+              gh issue create --title "$title" --body "$body" --label "$labels" || true
+            fi
           done
