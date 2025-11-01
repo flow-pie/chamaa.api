@@ -48,6 +48,22 @@ A **blockchain-powered mobile app** where:
 
 ---
 
+## Roadmap
+See [ROADMAP.md](./ROADMAP.md) for planned features and development phases.
+
+---
+
+## Contributing
+We welcome contributions! Whether it's code, docs, or design ideas:
+- Fork the repo
+- Create a feature branch (`git checkout -b feature/amazing-thing`)
+- Commit your changes
+- Open a Pull Request 
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
+
+---
+
 ## Getting Started
 
 ### 1️Clone the repo
