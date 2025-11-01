@@ -52,5 +52,5 @@ A **blockchain-powered mobile app** where:
 
 ### 1️Clone the repo
 ```bash
-git clone https://github.com/<flow-pie>/chamaa.api.git
+git clone https://github.com/flow-pie/chamaa.api.git
 cd chamaa.api
