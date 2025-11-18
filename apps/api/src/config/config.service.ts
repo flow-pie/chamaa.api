@@ -5,7 +5,7 @@ dotenv.config();
 @Injectable()
 export class ConfigService {
   get(key: string): string {
-    return process.env[key];
+    return process.env[key] || '';
   }
 
   getNumber(key: string): number {
