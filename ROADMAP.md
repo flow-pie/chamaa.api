@@ -8,10 +8,10 @@
 
 ### Phase 1 – Project Setup
 
-* [ ] Initialize GitHub repo (mono-repo or separate frontend/backend)
-* [ ] Set up Node.js backend (Express + TypeScript + ESLint + Prettier)
+* [x] Initialize GitHub repo (monorepo with Turbo)
+* [x] Set up Node.js backend (NestJS + TypeScript + ESLint + Prettier)
 * [ ] Set up Android project (Java, MVVM, Room, Retrofit, Firebase Auth)
-* [ ] Write project README + contribution guidelines
+* [x] Write project README + contribution guidelines
 * [ ] Configure CI/CD (GitHub Actions: build + lint + tests)
 
 ---
@@ -28,7 +28,7 @@
 
 ### Phase 3 – Blockchain Integration
 
-* [ ] Set up blockchain connection (Hyperledger Fabric OR Polygon testnet)
+* [x] Set up blockchain connection (Polygon testnet with Ethers.js)
 * [ ] Implement smart contract for contributions & withdrawals
 * [ ] Deploy contract to testnet & connect backend
 * [ ] Write backend service to record transactions on blockchain
