@@ -39,12 +39,31 @@ Focus on quality, not quantity.
    ```bash
    git checkout -b feature/awesome-update
    ```
-4. **Install dependencies** and start coding 
+5. **Install dependencies**
 
    ```bash
-   npm install
-   npm run dev
+   pnpm install
    ```
+6. **Setup environment variables**
+
+   ```bash
+   cp .env.example .env
+   # Edit .env with necessary configuration
+   ```
+7. **Start development server**
+
+   ```bash
+   pnpm dev
+   ```
+8. **Run tests and linting**
+
+   ```bash
+   pnpm test      # Run all tests
+   pnpm lint      # Check code style and formatting
+   ```
+9. **Make your changes** and test thoroughly
+
+10. **Commit and push** your changes (see commit message guidelines below)
 
 ---
 
