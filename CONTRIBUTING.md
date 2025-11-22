@@ -117,15 +117,48 @@ chore(license): update MIT license year
 
 ---
 
-## Pull Request Guidelines
+---
 
-* Make sure your branch is **up to date** with `main`
-* Run all **tests and linters** before submitting
-* Write a **clear PR title** and short description
-* Link related **issues** in the PR body
-* Avoid bundling unrelated changes in one PR
+## 🎯 Choosing an Issue to Work On
 
-> NOTE : PRs with clean commits and descriptions get merged faster.
+1. **Check the [Issues tab](https://github.com/flow-pie/chamaa.api/issues)** on GitHub
+2. **Look for labels**:
+   - `good first issue` — Perfect for beginners, well-scoped tasks
+   - `help wanted` — More complex issues that need community help
+3. **Comment on the issue** before starting: "I'd like to work on this" — this prevents duplicate work
+4. **Ask questions** in the issue if requirements are unclear
+5. **Read the issue description carefully** — it contains acceptance criteria
+
+---
+
+## Pull Request Workflow
+
+### Before You Submit
+- [ ] Your branch is **up to date** with `main`: `git pull upstream main`
+- [ ] All **tests pass**: `pnpm test`
+- [ ] **No linting errors**: `pnpm lint`
+- [ ] Your commits follow **conventional commit** style
+- [ ] You've **signed your commits** (recommended): `git commit -s`
+- [ ] Related **issue is linked** in PR description
+
+### Creating a PR
+1. **Push your branch**: `git push origin feature/your-feature-name`
+2. **Create a Pull Request** on GitHub with:
+   - Clear title describing the change
+   - Description of what you changed and why
+   - Link to related issue (e.g., "Fixes #123")
+   - Screenshots/videos if applicable
+
+### PR Review & Feedback
+- **Expected review time**: 2-5 business days
+- **Reviewers**: Project maintainers will be auto-assigned
+- **Feedback**: Address comments and push updates
+- **Re-request review** after making changes
+- **Approval**: Need at least 1 approval to merge
+
+### Merge & Deploy
+- Once approved, maintainers will merge your PR
+- Your contribution will be in the next release! 🎉
 
 ---
 
