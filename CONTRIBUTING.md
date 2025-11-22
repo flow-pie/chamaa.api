@@ -236,7 +236,7 @@ You can read the full text of the DCO here:
 * [ ] My code follows the project style guide
 * [ ] I’ve added or updated tests if necessary
 * [ ] I’ve updated documentation where relevant
-* [ ] I’ve run `npm run lint` and `npm test` with no errors
+* [ ] I’ve run `pnpm lint` and `pnpm test` with no errors
 * [ ] I’ve signed my commits
 
 ---
