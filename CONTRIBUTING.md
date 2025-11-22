@@ -15,7 +15,14 @@ Focus on quality, not quantity.
 
 ## Development Setup
 
-1. **Fork** the repository
+### Prerequisites
+- **Node.js** 18+ ([Download](https://nodejs.org/))
+- **pnpm** 8+ (preferred for monorepo): `npm install -g pnpm`
+- **Git**
+
+### Step-by-Step
+
+1. **Fork** the repository on GitHub
 2. **Clone** your fork
 
    ```bash
