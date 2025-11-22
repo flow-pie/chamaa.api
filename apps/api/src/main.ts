@@ -20,4 +20,4 @@ async function bootstrap() {
   console.log(`Server running on http://localhost:${config.getNumber('PORT')}`);
 }
 
-bootstrap();
+void bootstrap();
