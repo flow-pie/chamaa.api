@@ -15,24 +15,55 @@ Focus on quality, not quantity.
 
 ## Development Setup
 
-1. **Fork** the repository
+### Prerequisites
+- **Node.js** 18+ ([Download](https://nodejs.org/))
+- **pnpm** 8+ (preferred for monorepo): `npm install -g pnpm`
+- **Git**
+
+### Step-by-Step
+
+1. **Fork** the repository on GitHub
 2. **Clone** your fork
 
    ```bash
-   git clone https://github.com/flow-pie/chamaa.api.git
+   git clone https://github.com/YOUR-USERNAME/chamaa.api.git
    cd chamaa.api
    ```
-3. **Create a new branch**
+3. **Add upstream remote** (to sync with main repo)
+
+   ```bash
+   git remote add upstream https://github.com/flow-pie/chamaa.api.git
+   ```
+4. **Create a new branch** from `main`
 
    ```bash
    git checkout -b feature/awesome-update
    ```
-4. **Install dependencies** and start coding 
+5. **Install dependencies**
 
    ```bash
-   npm install
-   npm run dev
+   pnpm install
    ```
+6. **Setup environment variables**
+
+   ```bash
+   cp .env.example .env
+   # Edit .env with necessary configuration
+   ```
+7. **Start development server**
+
+   ```bash
+   pnpm dev
+   ```
+8. **Run tests and linting**
+
+   ```bash
+   pnpm test      # Run all tests
+   pnpm lint      # Check code style and formatting
+   ```
+9. **Make your changes** and test thoroughly
+
+10. **Commit and push** your changes (see commit message guidelines below)
 
 ---
 
@@ -86,15 +117,48 @@ chore(license): update MIT license year
 
 ---
 
-## Pull Request Guidelines
+---
 
-* Make sure your branch is **up to date** with `main`
-* Run all **tests and linters** before submitting
-* Write a **clear PR title** and short description
-* Link related **issues** in the PR body
-* Avoid bundling unrelated changes in one PR
+## 🎯 Choosing an Issue to Work On
 
-> NOTE : PRs with clean commits and descriptions get merged faster.
+1. **Check the [Issues tab](https://github.com/flow-pie/chamaa.api/issues)** on GitHub
+2. **Look for labels**:
+   - `good first issue` — Perfect for beginners, well-scoped tasks
+   - `help wanted` — More complex issues that need community help
+3. **Comment on the issue** before starting: "I'd like to work on this" — this prevents duplicate work
+4. **Ask questions** in the issue if requirements are unclear
+5. **Read the issue description carefully** — it contains acceptance criteria
+
+---
+
+## Pull Request Workflow
+
+### Before You Submit
+- [ ] Your branch is **up to date** with `main`: `git pull upstream main`
+- [ ] All **tests pass**: `pnpm test`
+- [ ] **No linting errors**: `pnpm lint`
+- [ ] Your commits follow **conventional commit** style
+- [ ] You've **signed your commits** (recommended): `git commit -s`
+- [ ] Related **issue is linked** in PR description
+
+### Creating a PR
+1. **Push your branch**: `git push origin feature/your-feature-name`
+2. **Create a Pull Request** on GitHub with:
+   - Clear title describing the change
+   - Description of what you changed and why
+   - Link to related issue (e.g., "Fixes #123")
+   - Screenshots/videos if applicable
+
+### PR Review & Feedback
+- **Expected review time**: 2-5 business days
+- **Reviewers**: Project maintainers will be auto-assigned
+- **Feedback**: Address comments and push updates
+- **Re-request review** after making changes
+- **Approval**: Need at least 1 approval to merge
+
+### Merge & Deploy
+- Once approved, maintainers will merge your PR
+- Your contribution will be in the next release! 🎉
 
 ---
 
@@ -165,13 +229,6 @@ You can read the full text of the DCO here:
 
 ---
 
-
-```bash
-git commit -s -m "chore(license): update MIT license"
-```
-
-This adds a `Signed-off-by:` line automatically.
-
 ---
 
 ## Final Checklist Before PR
@@ -179,7 +236,7 @@ This adds a `Signed-off-by:` line automatically.
 * [ ] My code follows the project style guide
 * [ ] I’ve added or updated tests if necessary
 * [ ] I’ve updated documentation where relevant
-* [ ] I’ve run `npm run lint` and `npm test` with no errors
+* [ ] I’ve run `pnpm lint` and `pnpm test` with no errors
 * [ ] I’ve signed my commits
 
 ---
