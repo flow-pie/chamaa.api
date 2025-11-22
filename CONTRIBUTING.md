@@ -229,13 +229,6 @@ You can read the full text of the DCO here:
 
 ---
 
-
-```bash
-git commit -s -m "chore(license): update MIT license"
-```
-
-This adds a `Signed-off-by:` line automatically.
-
 ---
 
 ## Final Checklist Before PR
