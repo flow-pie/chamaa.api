@@ -1,315 +1,318 @@
-# Chamaa.API - GitHub Issues organized by Phase/Milestone
-# Each issue is tagged with a milestone matching ROADMAP.md phases
+# Chamaa.API - GitHub Issues aligned with existing milestones
 
 issues:
-  # ============ PHASE 1: Project Setup ============
+  # ============ PHASE 1: Project Setup (Q4 2025) ============
+  # Foundation - Project structure and basic configurations
+  
   - title: Finalize project README and documentation
     body: Comprehensive README with setup instructions, architecture overview, and deployment guide.
-    labels: [docs, phase-1]
-    milestone: "Phase 1: Project Setup"
+    labels: [docs, phase-1, setup]
+    milestone: "Phase 1: Project setup (Q4 2025)"
 
   - title: Write contribution guidelines
     body: CONTRIBUTING.md with commit conventions, PR workflow, and code of conduct.
-    labels: [docs, phase-1]
-    milestone: "Phase 1: Project Setup"
+    labels: [docs, phase-1, setup]
+    milestone: "Phase 1: Project setup (Q4 2025)"
 
-  - title: Setup GitHub Actions CI/CD
-    body: Automated linting, build verification, and test pipeline for Node.js backend.
-    labels: [devops, phase-1]
-    milestone: "Phase 1: Project Setup"
+  - title: Setup environment configuration (.env.example)
+    body: Document all environment variables needed for development and production.
+    labels: [config, phase-1, setup]
+    milestone: "Phase 1: Project setup (Q4 2025)"
 
-  # ============ PHASE 2: Backend Foundation ============
+  - title: Initialize Git workflow and branch protection
+    body: Setup main, develop branches. Configure branch protection rules.
+    labels: [devops, phase-1, setup]
+    milestone: "Phase 1: Project setup (Q4 2025)"
+
+  - title: Create project documentation structure
+    body: Setup docs/ folder with architecture, API specs, blockchain guides.
+    labels: [docs, phase-1, setup]
+    milestone: "Phase 1: Project setup (Q4 2025)"
+
+  - title: Setup TypeScript base configuration
+    body: Configure tsconfig.json with strict mode, path aliases for monorepo.
+    labels: [backend, phase-1, setup]
+    milestone: "Phase 1: Project setup (Q4 2025)"
+
+  - title: Initialize monorepo with Turbo
+    body: Setup Turbo for build orchestration, pnpm workspaces, task scheduling.
+    labels: [devops, phase-1, setup]
+    milestone: "Phase 1: Project setup (Q4 2025)"
+
+  # ============ PHASE 2: Infrastructure & Observability ============
+  # Setup infrastructure and install required tools for monitoring
+  
   - title: Setup database (PostgreSQL)
-    body: Configure PostgreSQL with migrations. Store user profiles and group metadata.
-    labels: [backend, database, phase-2]
-    milestone: "Phase 2: Backend Foundation"
+    body: Configure PostgreSQL with Docker, migrations, connection pooling.
+    labels: [backend, database, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: Implement user model
-    body: Create User schema (id, email, phone, KYC, wallet reference). Firebase Auth integration.
-    labels: [backend, phase-2]
-    milestone: "Phase 2: Backend Foundation"
+  - title: Implement user model and schema
+    body: Create User table (id, email, phone, KYC, wallet reference). Firebase Auth integration.
+    labels: [backend, database, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: Implement group model
-    body: Create Group schema (name, members, rules, contribution minimum, loan deadline).
-    labels: [backend, phase-2]
-    milestone: "Phase 2: Backend Foundation"
+  - title: Implement group model and schema
+    body: Create Group table (name, members, rules, contribution minimum, loan deadline).
+    labels: [backend, database, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: Implement transaction model
-    body: Create Transaction schema (type, amount, timestamp, participant, on-chain hash).
-    labels: [backend, phase-2]
-    milestone: "Phase 2: Backend Foundation"
+  - title: Implement transaction model and schema
+    body: Create Transaction table (type, amount, timestamp, participant, on-chain hash).
+    labels: [backend, database, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: API - User registration & login
-    body: Firebase Auth integration. Email/phone based authentication endpoints.
-    labels: [backend, auth, api, phase-2]
-    milestone: "Phase 2: Backend Foundation"
+  - title: Setup monitoring and logging (ELK stack)
+    body: Configure Elasticsearch, Logstash, Kibana for centralized logging.
+    labels: [devops, observability, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: API - JWT token management
-    body: Secure JWT middleware for protected endpoints. Token refresh logic.
-    labels: [backend, auth, api, phase-2]
-    milestone: "Phase 2: Backend Foundation"
+  - title: Setup health check and metrics endpoints
+    body: Implement Prometheus metrics and /health endpoint for monitoring.
+    labels: [devops, observability, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  # ============ PHASE 3: Blockchain Integration ============
-  - title: Setup blockchain connection (Polygon Testnet)
-    body: Configure Ethers.js to connect to Polygon Mumbai testnet. Wallet management.
-    labels: [blockchain, phase-3]
-    milestone: "Phase 3: Blockchain Integration"
+  - title: Configure error tracking (Sentry)
+    body: Setup Sentry for error reporting and performance monitoring.
+    labels: [devops, observability, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: Write basic smart contract (Solidity)
-    body: Smart contract for group contribution ledger, withdrawals, and basic loan rules.
-    labels: [blockchain, smart-contract, phase-3]
-    milestone: "Phase 3: Blockchain Integration"
+  - title: Setup database backup strategy
+    body: Configure automated backups and disaster recovery procedures.
+    labels: [devops, infrastructure, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: Deploy smart contract on testnet
-    body: Deploy contract to Polygon Mumbai testnet. Document contract address and ABI.
-    labels: [blockchain, deployment, phase-3]
-    milestone: "Phase 3: Blockchain Integration"
+  - title: Setup API rate limiting and throttling
+    body: Implement rate limiting middleware to prevent abuse.
+    labels: [backend, security, phase-2, infrastructure]
+    milestone: "Phase 2: Infrastructure & Observability"
 
-  - title: Integrate backend with smart contract
-    body: Create services to call contract methods from NestJS API using Ethers.js.
-    labels: [backend, blockchain, phase-3]
-    milestone: "Phase 3: Blockchain Integration"
+  # ============ PHASE 3: Core API Features ============
+  # Backend API endpoints and core business logic
+  
+  - title: API - User registration and authentication
+    body: Firebase Auth integration. Email/phone based registration and JWT tokens.
+    labels: [backend, api, auth, phase-3]
+    milestone: "Phase 3: Core API Features"
 
-  - title: API - Make contribution (on-chain + off-chain)
-    body: Record contribution both on blockchain and in database. Update wallet balance.
+  - title: API - Create and manage groups
+    body: Endpoints for group creation, joining, updating rules, member management.
+    labels: [backend, api, phase-3]
+    milestone: "Phase 3: Core API Features"
+
+  - title: API - Make contributions
+    body: Endpoint to record contributions both on-chain and off-chain. Update wallet balance.
     labels: [backend, api, blockchain, phase-3]
-    milestone: "Phase 3: Blockchain Integration"
+    milestone: "Phase 3: Core API Features"
+
+  - title: API - Request and manage loans
+    body: Endpoint for loan requests, tracking, and status management.
+    labels: [backend, api, phase-3]
+    milestone: "Phase 3: Core API Features"
 
   - title: API - Withdraw funds
     body: Treasurer approval workflow. Update wallet and record on blockchain.
     labels: [backend, api, blockchain, phase-3]
-    milestone: "Phase 3: Blockchain Integration"
+    milestone: "Phase 3: Core API Features"
 
-  # ============ PHASE 4: Mobile Money & Payments ============
-  - title: Integrate M-Pesa Daraja API
-    body: Setup M-Pesa sandbox integration. Handle Lipa Na M-Pesa callbacks.
-    labels: [payments, backend, phase-4]
-    milestone: "Phase 4: Mobile Money & Payments"
+  - title: API - Fetch transaction history
+    body: Get user/group transactions with filtering, pagination, and caching.
+    labels: [backend, api, phase-3]
+    milestone: "Phase 3: Core API Features"
 
-  - title: Integrate Airtel Money API
-    body: Setup Airtel Money sandbox integration for East African users.
-    labels: [payments, backend, phase-4]
-    milestone: "Phase 4: Mobile Money & Payments"
+  - title: API - Wallet balance queries
+    body: Fetch on-chain and off-chain balance. Sync blockchain and database.
+    labels: [backend, api, blockchain, phase-3]
+    milestone: "Phase 3: Core API Features"
 
-  - title: Integrate PayPal REST API
-    body: Setup PayPal sandbox for diaspora contributions.
-    labels: [payments, backend, phase-4]
-    milestone: "Phase 4: Mobile Money & Payments"
+  # ============ PHASE 4: BlockChain Layer ============
+  # Connects backend to blockchain and NFTs
+  
+  - title: Setup blockchain connection (Polygon Testnet)
+    body: Configure Ethers.js to connect to Polygon Mumbai testnet. Wallet management.
+    labels: [blockchain, phase-4]
+    milestone: "Phase 4: BlockChain layer"
 
-  - title: Abstract payment service layer
-    body: Create modular PaymentService to support multiple gateways (M-Pesa, Airtel, PayPal).
-    labels: [backend, payments, phase-4]
-    milestone: "Phase 4: Mobile Money & Payments"
+  - title: Write basic smart contract (Solidity)
+    body: Smart contract for group contribution ledger, withdrawals, and loan enforcement.
+    labels: [blockchain, smart-contract, phase-4]
+    milestone: "Phase 4: BlockChain layer"
 
-  - title: Webhook handlers for payment callbacks
-    body: Process M-Pesa, Airtel, PayPal callbacks. Update wallet balances.
-    labels: [backend, payments, phase-4]
-    milestone: "Phase 4: Mobile Money & Payments"
+  - title: Deploy smart contract on testnet
+    body: Deploy contract to Polygon Mumbai testnet. Document contract address and ABI.
+    labels: [blockchain, deployment, phase-4]
+    milestone: "Phase 4: BlockChain layer"
 
-  # ============ PHASE 5: Group Management ============
-  - title: API - Create group
-    body: Endpoint to create new chama group with initial rules and treasurer.
-    labels: [backend, api, phase-5]
-    milestone: "Phase 5: Group Management"
+  # ============ PHASE 5: Governance & Voting ============
+  # Voting system and governance features
+  
+  - title: Smart contract - voting logic (1-member-1-vote)
+    body: Implement voting mechanism in smart contract. Support weighted voting option.
+    labels: [blockchain, smart-contract, governance, phase-5]
+    milestone: "Phase 5 : Governance & Voting"
 
-  - title: API - Join group
-    body: Membership request workflow with treasurer approval.
-    labels: [backend, api, phase-5]
-    milestone: "Phase 5: Group Management"
+  - title: API - Submit and fetch votes on proposals
+    body: Endpoints for members to vote on group decisions and retrieve voting results.
+    labels: [backend, api, governance, phase-5]
+    milestone: "Phase 5 : Governance & Voting"
 
-  - title: API - Define group rules
-    body: Set contribution minimums, loan deadlines, penalty rates for group.
-    labels: [backend, api, phase-5]
-    milestone: "Phase 5: Group Management"
+  # ============ PHASE 6: Mobile App (Android) ============
+  # Building a mobile app
+  
+  - title: "Android: Project setup and architecture"
+    body: Create base Android project with MVVM architecture, Jetpack Compose, dependencies.
+    labels: [android, setup, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
-  - title: Smart contract - enforce group rules
-    body: Add contract functions to validate contributions against group minimum.
-    labels: [blockchain, smart-contract, phase-5]
-    milestone: "Phase 5: Group Management"
-
-  # ============ PHASE 6: Loans & Lending ============
-  - title: API - Request loan
-    body: Submit loan request with amount and purpose. Record on blockchain.
-    labels: [backend, api, phase-6]
-    milestone: "Phase 6: Loans & Lending"
-
-  - title: API - Loan approval voting
-    body: Members vote on loan requests. Record votes on blockchain.
-    labels: [backend, api, governance, phase-6]
-    milestone: "Phase 6: Loans & Lending"
-
-  - title: API - Disburse loan
-    body: Transfer funds to borrower after approval via M-Pesa or blockchain.
-    labels: [backend, api, blockchain, phase-6]
-    milestone: "Phase 6: Loans & Lending"
-
-  - title: API - Repay loan
-    body: Borrower repayment endpoint. Update contract and wallet balance.
-    labels: [backend, api, blockchain, phase-6]
-    milestone: "Phase 6: Loans & Lending"
-
-  - title: Smart contract - repayment deadlines & penalties
-    body: Auto-calculate penalties for late repayments in contract.
-    labels: [blockchain, smart-contract, phase-6]
-    milestone: "Phase 6: Loans & Lending"
-
-  - title: Backend - cron job for overdue loans
-    body: Scheduled job to detect overdue loans and apply penalties.
-    labels: [backend, automation, phase-6]
-    milestone: "Phase 6: Loans & Lending"
-
-  # ============ PHASE 7: Voting & Governance ============
-  - title: Smart contract - voting logic
-    body: Implement 1-member-1-vote and weighted voting in contract.
-    labels: [blockchain, smart-contract, governance, phase-7]
-    milestone: "Phase 7: Voting & Governance"
-
-  - title: API - Submit vote on proposal
-    body: Endpoint for members to vote on group decisions.
-    labels: [backend, api, governance, phase-7]
-    milestone: "Phase 7: Voting & Governance"
-
-  - title: API - Fetch voting results
-    body: Get voting results from blockchain and calculate outcomes.
-    labels: [backend, api, governance, phase-7]
-    milestone: "Phase 7: Voting & Governance"
-
-  - title: Record & display voting history
-    body: Store and display immutable voting results in app.
-    labels: [governance, backend, phase-7]
-    milestone: "Phase 7: Voting & Governance"
-
-  # ============ PHASE 8: Mobile App Features ============
-  - title: "Android: User registration & login UI"
+  - title: "Android: User registration and login UI"
     body: Firebase Auth UI (phone/email). Backend sync for user profile.
-    labels: [android, auth, ui, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+    labels: [android, auth, ui, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
   - title: "Android: Wallet dashboard screen"
-    body: Display on-chain + off-chain balance. Real-time balance updates.
-    labels: [android, ui, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+    body: Display on-chain + off-chain balance. Real-time balance updates from backend.
+    labels: [android, ui, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
-  - title: "Android: Create/join group UI"
-    body: Group creation form and join group workflow with approval.
-    labels: [android, ui, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+  - title: "Android: Create and join group UI"
+    body: Group creation form and join group workflow with treasurer approval.
+    labels: [android, ui, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
   - title: "Android: Contribution screen"
-    body: UI to make contributions via M-Pesa, Airtel, or PayPal.
-    labels: [android, ui, payments, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+    body: UI to make contributions via M-Pesa, Airtel, or PayPal with confirmation.
+    labels: [android, ui, payments, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
   - title: "Android: Loan request form"
     body: Request loan with amount, purpose, and repayment timeline.
-    labels: [android, ui, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+    labels: [android, ui, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
   - title: "Android: Voting screen"
     body: Vote on loan approvals and group decisions with real-time results.
-    labels: [android, ui, governance, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+    labels: [android, ui, governance, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
   - title: "Android: Transaction history screen"
     body: List contributions, loans, repayments. Cached with Room DB.
-    labels: [android, ui, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+    labels: [android, ui, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
   - title: "Android: Push notifications"
-    body: Firebase Cloud Messaging for loan approvals, penalties, votes.
-    labels: [android, notifications, phase-8]
-    milestone: "Phase 8: Mobile App Features"
+    body: Firebase Cloud Messaging for loan approvals, penalties, votes, updates.
+    labels: [android, notifications, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
-  # ============ PHASE 9: Security & Compliance ============
-  - title: Encrypt sensitive data
-    body: Encrypt wallet private keys and API tokens at rest.
-    labels: [security, backend, phase-9]
-    milestone: "Phase 9: Security & Compliance"
+  - title: "Android: Profile and settings UI"
+    body: Manage user details, wallet, language, app preferences.
+    labels: [android, ui, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
-  - title: Role-based access control
-    body: Admin vs member permissions. Treasurer vs member endpoints.
-    labels: [security, backend, phase-9]
-    milestone: "Phase 9: Security & Compliance"
+  - title: "Android: Offline sync and data caching"
+    body: Room DB for offline access. Automatic sync when connection returns.
+    labels: [android, sync, phase-6]
+    milestone: "Phase 6: Mobile App (Android)"
 
-  - title: Fraud prevention
-    body: Prevent double spending, duplicate transactions, malicious requests.
-    labels: [security, backend, phase-9]
-    milestone: "Phase 9: Security & Compliance"
+  # ============ PHASE 7: DevOps & Scaling (Continuous) ============
+  # Ongoing DevOps, infrastructure, and scaling
+  
+  - title: Setup GitHub Actions CI/CD pipeline
+    body: Automated linting, build verification, and test pipeline on push/PR.
+    labels: [devops, ci-cd, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  - title: Audit logging
-    body: Log all transactions, approvals, role changes for compliance.
-    labels: [security, backend, phase-9]
-    milestone: "Phase 9: Security & Compliance"
+  - title: Dockerize backend API (NestJS)
+    body: Create Dockerfile with multi-stage builds for production-ready image.
+    labels: [devops, docker, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  - title: GDPR & data privacy compliance
-    body: Implement data export, deletion, and privacy controls.
-    labels: [security, compliance, phase-9]
-    milestone: "Phase 9: Security & Compliance"
+  - title: Setup docker-compose for local development
+    body: docker-compose file for full stack (API, DB, Redis, blockchain node).
+    labels: [devops, docker, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  # ============ PHASE 10: Deployment & Release ============
-  - title: Dockerize backend + PostgreSQL
-    body: Create Dockerfile for NestJS API and docker-compose for full stack.
-    labels: [devops, deployment, phase-10]
-    milestone: "Phase 10: Deployment & Release"
+  - title: Deploy backend to cloud (AWS/GCP/Render)
+    body: Setup production deployment with auto-scaling, load balancing, CDN.
+    labels: [devops, deployment, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  - title: Deploy backend to production cloud
-    body: Deploy to AWS/GCP/Render. Setup database backups and monitoring.
-    labels: [devops, deployment, phase-10]
-    milestone: "Phase 10: Deployment & Release"
+  - title: Setup Redis for caching and sessions
+    body: Configure Redis for distributed caching and session management.
+    labels: [devops, caching, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  - title: Deploy smart contracts to mainnet
-    body: Deploy contracts to Ethereum mainnet or Polygon PoS mainnet.
-    labels: [blockchain, deployment, phase-10]
-    milestone: "Phase 10: Deployment & Release"
+  - title: Implement API gateway and load balancing
+    body: Setup reverse proxy for routing, rate limiting, and request aggregation.
+    labels: [devops, infrastructure, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  - title: Release Android app to Play Store
-    body: Beta release on Google Play Store for public testing.
-    labels: [android, deployment, phase-10]
-    milestone: "Phase 10: Deployment & Release"
+  - title: Setup auto-scaling and horizontal pod autoscaling
+    body: Configure auto-scaling based on CPU/memory metrics.
+    labels: [devops, scaling, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  # ============ TESTING ============
-  - title: Write backend unit tests
-    body: Jest tests for services, controllers, middleware.
-    labels: [testing, backend]
-    milestone: "Testing"
+  - title: Implement cron jobs for background tasks
+    body: Auto-detect overdue loans, apply penalties, cleanup old records.
+    labels: [backend, automation, phase-7]
+    milestone: "Phase 7: DevOps & scaling(continous)"
 
-  - title: Write backend integration tests
-    body: E2E tests (API → DB → Blockchain).
-    labels: [testing, backend]
-    milestone: "Testing"
+  # ============ PHASE 8: Long Term Goals ============
+  # Advanced features and future roadmap
+  
+  - title: Integrate M-Pesa, Airtel Money, and PayPal
+    body: Payment gateway integrations with webhook handlers for transaction confirmation.
+    labels: [payments, backend, phase-8, future]
+    milestone: "Phase 8: Long term goals"
 
-  - title: Write Android unit tests
-    body: Espresso and unit tests for Android components.
-    labels: [testing, android]
-    milestone: "Testing"
-
-  - title: Write smart contract tests
-    body: Hardhat tests for contract functions.
-    labels: [testing, blockchain]
-    milestone: "Testing"
-
-  # ============ FUTURE FEATURES ============
-  - title: Investment pooling feature
+  - title: Investment pooling and group investment voting
     body: Enable groups to vote on and execute collective investments.
-    labels: [feature, governance]
-    milestone: "Future Features"
+    labels: [feature, governance, phase-8, future]
+    milestone: "Phase 8: Long term goals"
 
-  - title: NFT-based member IDs
-    body: Issue NFT identity badges to group members.
-    labels: [feature, blockchain]
-    milestone: "Future Features"
+  - title: NFT-based member IDs and analytics dashboard
+    body: Issue NFT identity badges and create analytics dashboard with charts.
+    labels: [feature, blockchain, analytics, phase-8, future]
+    milestone: "Phase 8: Long term goals"
 
-  - title: Analytics dashboard
-    body: Charts for contributions, loans, repayment rates, group growth.
-    labels: [feature, analytics]
-    milestone: "Future Features"
+  # ============ TESTING & QUALITY ============
+  # Test coverage and quality assurance
+  
+  - title: Write backend unit tests (API, services)
+    body: Jest tests for NestJS controllers, services, middleware.
+    labels: [testing, backend]
 
-  - title: Multi-language support (i18n)
-    body: Add English, Swahili, French translations.
-    labels: [feature, i18n]
-    milestone: "Future Features"
+  - title: Write integration tests (API + DB + Blockchain)
+    body: E2E tests covering full flow from API through database to blockchain.
+    labels: [testing, backend, blockchain]
 
-  - title: AI-powered credit scoring
-    body: Machine learning model to assess loan risk automatically.
-    labels: [feature, ai]
-    milestone: "Future Features"
+  - title: Write smart contract tests (Hardhat)
+    body: Comprehensive tests for contract functions and edge cases.
+    labels: [testing, blockchain]
+
+  - title: Write Android unit and UI tests
+    body: Espresso and unit tests for Android components and screens.
+    labels: [testing, android]
+
+  # ============ SECURITY & COMPLIANCE ============
+  # Security hardening and compliance
+  
+  - title: Implement encryption for sensitive data
+    body: Encrypt wallet private keys and API tokens at rest and in transit.
+    labels: [security, backend]
+
+  - title: Role-based access control (RBAC)
+    body: Admin vs member permissions. Treasurer-specific endpoints.
+    labels: [security, backend]
+
+  - title: Fraud detection and prevention
+    body: Prevent double spending, duplicate transactions, malicious requests.
+    labels: [security, backend]
+
+  - title: Audit logging for all transactions
+    body: Immutable log of all actions for compliance and traceability.
+    labels: [security, backend]
+
+  - title: GDPR and data privacy compliance
+    body: Data export, deletion, and privacy controls.
+    labels: [security, compliance]
