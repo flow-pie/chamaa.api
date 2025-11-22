@@ -26,10 +26,15 @@ Focus on quality, not quantity.
 2. **Clone** your fork
 
    ```bash
-   git clone https://github.com/flow-pie/chamaa.api.git
+   git clone https://github.com/YOUR-USERNAME/chamaa.api.git
    cd chamaa.api
    ```
-3. **Create a new branch**
+3. **Add upstream remote** (to sync with main repo)
+
+   ```bash
+   git remote add upstream https://github.com/flow-pie/chamaa.api.git
+   ```
+4. **Create a new branch** from `main`
 
    ```bash
    git checkout -b feature/awesome-update
