@@ -4,6 +4,7 @@ import {
   ArgumentsHost,
   HttpException,
 } from '@nestjs/common';
+import { Response } from 'express';
 
 interface HttpExceptionResponse {
   message?: string;
@@ -13,13 +14,14 @@ interface HttpExceptionResponse {
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost): void {
     const ctx = host.switchToHttp();
-    const res = ctx.getResponse();
+    const res = ctx.getResponse<Response>();
     const status =
       exception instanceof HttpException ? exception.getStatus() : 500;
-    
+
     const message =
       exception instanceof HttpException
-        ? (exception.getResponse() as HttpExceptionResponse).message || exception.message
+        ? (exception.getResponse() as HttpExceptionResponse).message ||
+          exception.message
         : 'Internal server error';
 
     res.status(status).json({
