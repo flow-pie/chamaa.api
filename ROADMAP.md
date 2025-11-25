@@ -1,12 +1,15 @@
 # Chamaa.API - Product Roadmap
 
 > A transparent plan for building Africa's next-generation decentralized savings platform.
+> **Last Updated:** November 25, 2025
 
 ---
 
 ## Overview
 
-Chamaa.API is organized into **8 phases**, each with specific deliverables and timelines. This roadmap aligns with our GitHub Milestones and Issues.
+Chamaa.API is organized into **8 phases**, each with specific deliverables and timelines. This roadmap is synced with GitHub Issues and project milestones.
+
+**Total Issues:** 102 | **Status:** Open to Contributors ✅
 
 ---
 
@@ -14,26 +17,17 @@ Chamaa.API is organized into **8 phases**, each with specific deliverables and t
 
 **Foundation** - Project structure and basic configurations
 
-### Objectives
-- [x] Initialize monorepo with Turbo and pnpm workspaces
-- [x] Setup NestJS backend with TypeScript and ESLint
-- [x] Create comprehensive README with setup instructions
-- [x] Write CONTRIBUTING.md with guidelines and workflows
-- [x] Setup environment configuration (.env.example)
-- [ ] Initialize Git workflow and branch protection rules
-- [ ] Create full documentation structure (docs/ folder)
+### Status: 🟢 Complete
+
+### Issues (3)
+- [x] #6 - Initialize Node.js backend project (Turbo-repo)
+- [ ] Comprehensive documentation (README, CONTRIBUTING) 
+- [ ] Environment Variables (.env) + secrets management
 
 ### Deliverables
 - ✅ Monorepo structure ready for development
 - ✅ Development environment setup documented
 - ✅ Contribution guidelines established
-- ⏳ Git workflow configured
-- ⏳ Documentation templates created
-
-### Issues
-- [ ] Initialize Git workflow and branch protection
-- [ ] Create project documentation structure
-- [ ] Setup TypeScript base configuration
 
 ---
 
@@ -41,43 +35,35 @@ Chamaa.API is organized into **8 phases**, each with specific deliverables and t
 
 **Setup infrastructure and install required tools for monitoring**
 
-### Objectives
-- [ ] Setup PostgreSQL database with Docker
-- [ ] Implement User model and schema
-- [ ] Implement Group model and schema
-- [ ] Implement Transaction model and schema
-- [ ] Setup ELK stack (Elasticsearch, Logstash, Kibana)
-- [ ] Implement health check and metrics endpoints
-- [ ] Configure Sentry for error tracking
-- [ ] Setup database backup and recovery
-- [ ] Implement API rate limiting
+### Database Setup
+- [ ] #14 - Setup database (MongoDB/Postgres)
+- [ ] #15 - Implement user model
+- [ ] #21 - Implement group model
+- [ ] #22 - Implement transaction model
+- [ ] #63 - Configure PostgreSQL + TypeORM
 
-### Deliverables
-- Database layer with migrations
-- User, Group, and Transaction schemas
-- Centralized logging and monitoring
-- Performance metrics and health checks
-- Error tracking and alerting
-- Database backup automation
-- Rate limiting middleware
+### API Middleware & Validation
+- [ ] #68 - API rate limiting & Validation middleware
 
-### Key Technologies
-- PostgreSQL with connection pooling
-- Prisma ORM for database management
-- ELK Stack for log aggregation
-- Prometheus for metrics
-- Sentry for error tracking
+### Monitoring & Observability Stack
+- [ ] #73 - Monitoring stack
+- [ ] #74 - Prometheus (metrics collection)
+- [ ] #75 - Grafana (Visual dashboards)
+- [ ] #76 - Loki (centralized logging)
+- [ ] #77 - Health checks & uptime alerts
+- [ ] #78 - System metrics dashboard
+- [ ] #79 - Error tracking (Sentry / OpenTelemetry)
 
-### Issues (9 Total)
-- [ ] Setup database (PostgreSQL)
-- [ ] Implement user model and schema
-- [ ] Implement group model and schema
-- [ ] Implement transaction model and schema
-- [ ] Setup monitoring and logging (ELK stack)
-- [ ] Setup health check and metrics endpoints
-- [ ] Configure error tracking (Sentry)
-- [ ] Setup database backup strategy
-- [ ] Setup API rate limiting and throttling
+### Caching & Message Queues
+- [ ] #71 - Add redis (Cache + queue)
+- [ ] #72 - Integrate RabbitMQ for background jobs
+
+### Deployment & Containerization
+- [ ] #69 - Container orchestration (Docker Compose)
+- [ ] #70 - Nginx reverse proxy + HTTPS (Lets encrypt / Traefik)
+
+### Issues (15)
+**Total issues in this phase: 15**
 
 ---
 
@@ -85,66 +71,67 @@ Chamaa.API is organized into **8 phases**, each with specific deliverables and t
 
 **Backend API endpoints and core business logic**
 
-### Objectives
-- [ ] User registration and authentication (Firebase)
-- [ ] Group creation, joining, and management
-- [ ] Contribution recording (on-chain + off-chain)
-- [ ] Loan request and management system
-- [ ] Fund withdrawal with approvals
-- [ ] Transaction history and filtering
-- [ ] Wallet balance queries and syncing
+### Authentication & User Management
+- [ ] #16 - Create Member Registration Endpoint
+- [ ] #17 - Implement Member Login Endpoint
+- [ ] #23 - API: User registration & login
+- [ ] #64 - Implement Auth (Firebase)
 
-### Deliverables
-- 7+ REST API endpoints
-- Authentication middleware
-- Contribution and withdrawal flows
-- Transaction ledger
-- Real-time balance synchronization
+### Group Management
+- [ ] #24 - API: Create group + join group
 
-### Key Features
-- Email/phone authentication via Firebase
-- JWT token management
-- Group-based access control
-- On-chain and off-chain record keeping
-- Transaction filtering and pagination
+### Contributions & Transactions
+- [ ] #18 - Create Contributions Endpoint
+- [ ] #19 - Fetch Member Contributions
+- [ ] #28 - API: Transaction history
+- [ ] #33 - Sync wallet balances
+- [ ] #66 - Wallet and Transactions endpoints
 
-### Issues (7 Total)
-- [ ] API - User registration and authentication
-- [ ] API - Create and manage groups
-- [ ] API - Make contributions
-- [ ] API - Request and manage loans
-- [ ] API - Withdraw funds
-- [ ] API - Fetch transaction history
-- [ ] API - Wallet balance queries
+### Loan Management
+- [ ] #20 - Create Loan Request Endpoint
+- [ ] #25 - API: Request loan
+- [ ] #26 - API: Approve/reject loan (voting system)
+- [ ] #27 - API: Loan repayment + penalties
+
+### Payment Integration
+- [ ] #29 - Integrate M-Pesa Daraja API
+- [ ] #30 - Integrate Airtel Money API
+- [ ] #31 - Integrate PayPal REST API
+- [ ] #32 - Abstract payment service layer
+- [ ] #65 - Mpesa + Paypal API integration
+
+### Issues (20+)
+**Total issues in this phase: 20+**
 
 ---
 
 ## Phase 4: Blockchain Layer
 
-**Connects backend to blockchain and NFTs**
+**Smart contracts and blockchain connectivity**
 
-### Objectives
-- [x] Setup blockchain connection (Polygon Testnet with Ethers.js)
-- [ ] Write Solidity smart contract for group ledger
-- [ ] Deploy contract to Polygon Mumbai testnet
-- [ ] Integrate backend with smart contract
+### Blockchain Setup
+- [ ] #9 - Research & choose blockchain framework
+- [ ] #10 - Setup blockchain node connection
+- [ ] #81 - Integrate Ethereum (Polygon testnet)
 
-### Deliverables
-- Smart contract for contribution and withdrawal tracking
-- Contract deployment on testnet
-- Backend service for contract interactions
-- Contract ABI and documentation
+### Smart Contracts - Core
+- [ ] #11 - Write basic smart contract for Chama
+- [ ] #82 - Smart contract for saving rules
+- [ ] #83 - Smart contract for Loan approvals
 
-### Smart Contract Features
-- Contribution ledger
-- Withdrawal approval logic
-- Basic loan enforcement
-- Transaction immutability
+### Smart Contract Deployment & Integration
+- [ ] #12 - Deploy smart contract on testnet
+- [ ] #13 - Integrate backend with smart contract
+- [ ] #84 - Add Nethereum or Ether.js integration
+- [ ] #85 - Store on-chain transaction hashes
 
-### Issues (3 Total)
-- [ ] Setup blockchain connection (Polygon Testnet)
-- [ ] Write basic smart contract (Solidity)
-- [ ] Deploy smart contract on testnet
+### Smart Contract Enforcement
+- [ ] #43 - Smart contract: enforce contribution rules
+- [ ] #44 - Smart contract: repayment deadlines & penalties
+- [ ] #45 - Backend: cron job for overdue loans
+
+### Issues (14)
+**Total issues in this phase: 14**
 
 ---
 
@@ -152,115 +139,96 @@ Chamaa.API is organized into **8 phases**, each with specific deliverables and t
 
 **Voting system and governance features**
 
-### Objectives
-- [ ] Implement smart contract voting logic
-- [ ] Create voting endpoints in API
-- [ ] Support 1-member-1-vote and weighted voting
-- [ ] Record and display voting results
+### DAO & Voting
+- [ ] #91 - Implement DAO-style voting system
+- [ ] #92 - Smart contracts based proposal
+- [ ] #93 - Real-time voting (socket.io / SignalR)
 
-### Deliverables
-- Voting mechanism in smart contract
-- Vote submission and retrieval APIs
-- Voting results calculation
-- Immutable voting history
+### Governance & Monitoring
+- [ ] #46 - Record, display voting history and onchain results dashboard
+- [ ] #90 - Display blockchain ledger + voting feed
 
-### Key Features
-- Democratic decision-making for group actions
-- Loan approval voting
-- Group rule changes via voting
-- Transparent voting records
+### Admin Tools
+- [ ] #106 - Admin Dashboard (`GET /api/admin/overview`)
+- [ ] #107 - Group Management (`PATCH /api/admin/groups/:id/status`)
+- [ ] #108 - Member management (`PATCH /api/admin/members/:id/role`)
+- [ ] #109 - System settings (`PUT /api/admin/settings`)
 
-### Issues (2 Total)
-- [ ] Smart contract - voting logic (1-member-1-vote)
-- [ ] API - Submit and fetch votes on proposals
+### Analytics & Audit
+- [ ] #59 - Analytics dashboard
+- [ ] #50 - Audit logging (`GET /api/admin/audit`)
+
+### Issues (11)
+**Total issues in this phase: 11**
 
 ---
 
 ## Phase 6: Mobile App (Android)
 
-**Building a mobile app**
+**Building a fully functional Android application**
 
-### Objectives
-- [ ] Setup Android project with MVVM architecture
-- [ ] Implement user authentication UI
-- [ ] Create wallet dashboard screen
-- [ ] Build group management UI
-- [ ] Create contribution screen with payment gateways
-- [ ] Implement loan request interface
-- [ ] Build voting screen with real-time results
-- [ ] Create transaction history with caching
-- [ ] Setup push notifications
-- [ ] Build profile and settings UI
-- [ ] Implement offline sync with Room DB
+### Project Setup
+- [ ] #7 - Initialize Android project (Kotlin, MVVM, Room DB)
 
-### Deliverables
-- Fully functional mobile application
-- Complete user flows for all features
-- Offline-first experience with sync
-- Real-time notifications
-- Cached transaction history
+### Authentication & Core UI
+- [ ] #34 - Android: User registration & login
+- [ ] #35 - Android: Create/join chama group UI
 
-### Technologies
-- Kotlin/Jetpack Compose for UI
-- Firebase Authentication
-- Room DB for offline caching
-- Firebase Cloud Messaging for notifications
-- Retrofit for API calls
-- MVVM architecture pattern
+### Wallet & Transactions
+- [ ] #36 - Android: Wallet balance screen
+- [ ] #40 - Android: Transaction history screen
 
-### Issues (11 Total)
-- [ ] Android: Project setup and architecture
-- [ ] Android: User registration and login UI
-- [ ] Android: Wallet dashboard screen
-- [ ] Android: Create and join group UI
-- [ ] Android: Contribution screen
-- [ ] Android: Loan request form
-- [ ] Android: Voting screen
-- [ ] Android: Transaction history screen
-- [ ] Android: Push notifications
-- [ ] Android: Profile and settings UI
-- [ ] Android: Offline sync and data caching
+### Contributions & Payments
+- [ ] #37 - Android: Contribution screen
+
+### Loans & Governance
+- [ ] #38 - Android: Loan request screen
+- [ ] #39 - Android: Loan approval voting screen
+
+### Real-time Features & Settings
+- [ ] #41 - Android: Push notifications
+- [ ] #42 - Android: Profile & settings UI
+
+### Offline Support & API Integration
+- [ ] #87 - Add firebase login
+- [ ] #88 - Implement API calls (Retrofit)
+- [ ] #89 - Add offline caching
+
+### Issues (14)
+**Total issues in this phase: 14**
 
 ---
 
 ## Phase 7: DevOps & Scaling (Continuous)
 
-**Ongoing DevOps, infrastructure, and scaling**
+**Automated deployment and infrastructure scaling**
 
-### Objectives
-- [ ] Setup GitHub Actions CI/CD pipeline
-- [ ] Dockerize NestJS backend API
-- [ ] Create docker-compose for full stack
-- [ ] Deploy backend to cloud (AWS/GCP/Render)
-- [ ] Setup Redis for caching and sessions
-- [ ] Implement API gateway and load balancing
-- [ ] Configure auto-scaling
-- [ ] Implement background jobs and cron tasks
+### CI/CD Pipeline
+- [ ] #8 - CI/CD pipelines (GitHub Actions / Render / Fly.io)
+- [ ] #94 - CI/CD automation (build → test → deploy)
 
-### Deliverables
-- Automated CI/CD pipeline
-- Containerized backend and database
-- Cloud deployment with auto-scaling
-- Distributed caching layer
-- Load balancing and CDN setup
-- Automated background processing
+### Deployment & Cloud
+- [ ] #51 - Docker + Docker compose environment
+- [ ] #52 - Deploy backend to cloud
 
-### Key Infrastructure
-- Docker and Kubernetes (optional)
-- GitHub Actions for CI/CD
-- AWS/GCP/Render for hosting
-- Redis for caching
-- Nginx or Cloudflare for API Gateway
+### Testing & Quality
+- [ ] #53 - Deploy contracts to testnet
+- [ ] #54 - Distribute Android APK
+- [ ] #55 - Write unit tests
+- [ ] #56 - Write integration tests
 
-### Issues (8 Total)
-- [ ] Setup GitHub Actions CI/CD pipeline
-- [ ] Dockerize backend API (NestJS)
-- [ ] Setup docker-compose for local development
-- [ ] Deploy backend to cloud (AWS/GCP/Render)
-- [ ] Setup Redis for caching and sessions
-- [ ] Implement API gateway and load balancing
-- [ ] Setup auto-scaling and horizontal pod autoscaling
-- [ ] Implement cron jobs for background tasks
+### Infrastructure & Scaling
+- [ ] #80 - Auto-scaling and worker management
+- [ ] #95 - Versioned API releases
+- [ ] #96 - Database migrations and rollback strategy
+- [ ] #98 - Daily backups (DB + wallets)
+- [ ] #99 - Performance profiling (APM tools)
+- [ ] #100 - Load testing (k6 / locust)
+- [ ] #101 - Blue-green deployment or canary releases
+- [ ] #102 - Cost monitoring (cloud budgets, resource optimization)
+
+### Issues (16)
+**Total issues in this phase: 16**
 
 ---
 
@@ -268,61 +236,40 @@ Chamaa.API is organized into **8 phases**, each with specific deliverables and t
 
 **Advanced features and future roadmap**
 
-### Objectives
-- [ ] Integrate M-Pesa Daraja API (sandbox)
-- [ ] Integrate Airtel Money API (sandbox)
-- [ ] Integrate PayPal REST API (sandbox)
-- [ ] Build investment pooling feature
-- [ ] Issue NFT member IDs
-- [ ] Create analytics dashboard
+### Security & Compliance
+- [ ] #47 - Encrypt sensitive data
+- [ ] #48 - Role-based access control
+- [ ] #49 - Fraud prevention
+- [ ] #97 - Security hardening (rate limits, CSP headers, owasp scan)
+- [ ] #104 - KYC verification (identity API)
 
-### Future Enhancements
-- Multi-currency support
-- AI-powered credit scoring
-- Advanced analytics with charts
-- Multi-language support (English, Swahili, French)
-- Web dashboard for administrators
-- API rate limiting per group
-- Compliance reporting
+### Blockchain Monitoring & Explorer
+- [ ] #86 - Blockchain explorer-style dashboard (Grafana or custom UI)
 
-### Issues (3 Total)
-- [ ] Integrate M-Pesa, Airtel Money, and PayPal
-- [ ] Investment pooling and group investment voting
-- [ ] NFT-based member IDs and analytics dashboard
+### Advanced Features (DeFi & NFTs)
+- [ ] #57 - Investment pooling feature
+- [ ] #58 - NFT-based member IDs
+- [ ] #60 - Multi-language support
+- [ ] #61 - AI-powered credit scoring
+- [ ] #103 - Tokenized group savings (DeFi integration)
+- [ ] #105 - Governance token for DAO participation
 
----
-
-## Cross-Cutting Concerns
-
-### Testing (4 Issues)
-- [ ] Write backend unit tests (API, services)
-- [ ] Write integration tests (API + DB + Blockchain)
-- [ ] Write smart contract tests (Hardhat)
-- [ ] Write Android unit and UI tests
-
-### Security & Compliance (5 Issues)
-- [ ] Implement encryption for sensitive data
-- [ ] Role-based access control (RBAC)
-- [ ] Fraud detection and prevention
-- [ ] Audit logging for all transactions
-- [ ] GDPR and data privacy compliance
+### Issues (12)
+**Total issues in this phase: 12**
 
 ---
 
-## Timeline Summary
+## Quick Reference: Issue Labels
 
-| Phase | Status | Timeline | Issues |
-|-------|--------|----------|--------|
-| Phase 1: Project Setup | 🟢 ~70% | Q4 2025 | 7 |
-| Phase 2: Infrastructure | 🔴 0% | Q1 2026 | 9 |
-| Phase 3: Core API | 🔴 0% | Q1 2026 | 7 |
-| Phase 4: Blockchain | 🟡 33% | Q2 2026 | 3 |
-| Phase 5: Governance | 🔴 0% | Q2 2026 | 2 |
-| Phase 6: Mobile App | 🔴 0% | Q2-Q3 2026 | 11 |
-| Phase 7: DevOps | 🔴 0% | Continuous | 8 |
-| Phase 8: Long Term | 🔴 0% | Q3+ 2026 | 3 |
-
-**Total: 59+ Issues tracked in GitHub Milestones**
+- 🟢 `good first issue` - Perfect for newcomers
+- 🟡 `help wanted` - More complex, needs collaboration
+- 🟣 `realtime` - Real-time features (Socket.io, WebSockets)
+- 🟠 `feature` - New functionality
+- 🔵 `backend` - Backend/API work
+- 🟤 `blockchain` - Blockchain & smart contracts
+- 🟪 `smart-contracts` - Solidity contracts
+- 🟣 `governance` - Voting & DAO systems
+- 🟢 `testing` - Tests & QA
 
 ---
 
@@ -331,38 +278,130 @@ Chamaa.API is organized into **8 phases**, each with specific deliverables and t
 We welcome contributions at all phases! Here's how to get started:
 
 1. **Review [CONTRIBUTING.md](./CONTRIBUTING.md)** for guidelines
-2. **Check [GitHub Issues](https://github.com/flow-pie/chamaa.api/issues)** filtered by phase
-3. **Pick an issue** that matches your skills and interests
-4. **Comment "I'd like to work on this"** to claim it
+2. **Check [GitHub Issues](https://github.com/flow-pie/chamaa.api/issues)** and use filters
+3. **Look for `good first issue` label** if you're new to the project
+4. **Comment "I'd like to work on this"** to claim an issue
 5. **Follow the development setup** in [README.md](./README.md)
 6. **Submit a Pull Request** with your changes
 
-### Recommended Starting Issues
-- Phase 1: Documentation and setup tasks
-- Phase 2: Database schema implementation
-- Phase 3: API endpoint development
-- Phase 7: CI/CD and DevOps (continuous)
+### Recommended Starting Points
+
+**New Contributors:**
+- Phase 1: Documentation tasks
+- Phase 2: Database schema and model implementation
+- Phase 3: Simple API endpoints (user, group management)
+
+**Intermediate Contributors:**
+- Phase 4: Blockchain integration
+- Phase 5: Governance & Admin features
+- Phase 8: Security & compliance
+
+**Advanced Contributors:**
+- Phase 6: Android app development
+- Phase 7: DevOps & infrastructure
+- Full end-to-end feature implementation
+
+---
+
+## Timeline & Progress
+
+| Phase | Status | Timeline | Issues |
+|-------|--------|----------|--------|
+| Phase 1: Project Setup | 🟢 Complete | Q4 2025 | 3 |
+| Phase 2: Infrastructure | 🔴 0% | Q1 2026 | 15 |
+| Phase 3: Core API | 🔴 0% | Q1 2026 | 20+ |
+| Phase 4: Blockchain | 🔴 0% | Q2 2026 | 14 |
+| Phase 5: Governance | 🔴 0% | Q2 2026 | 11 |
+| Phase 6: Mobile App | 🔴 0% | Q2-Q3 2026 | 14 |
+| Phase 7: DevOps | 🔴 0% | Continuous | 16 |
+| Phase 8: Long Term | 🔴 0% | Q3+ 2026 | 12 |
+
+**Total: 102 Issues** | [View on GitHub](https://github.com/flow-pie/chamaa.api/issues)
+
+---
+
+## Architecture Overview
+
+```
+chamaa.api/
+├── apps/
+│   ├── api/              # NestJS REST API
+│   │   ├── modules/
+│   │   │   ├── auth/     # Authentication (Phase 3)
+│   │   │   ├── user/     # User management (Phase 3)
+│   │   │   ├── group/    # Group management (Phase 3)
+│   │   │   ├── wallet/   # Wallet & transactions (Phase 3)
+│   │   │   ├── loan/     # Loan system (Phase 3)
+│   │   │   ├── payment/  # Payment integration (Phase 3)
+│   │   │   ├── proposal/ # Governance (Phase 5)
+│   │   │   ├── admin/    # Admin dashboard (Phase 5)
+│   │   │   └── notification/ # Real-time updates
+│   │   ├── common/       # Filters, interceptors, pipes
+│   │   └── config/       # Database, environment
+│   └── blockchain/       # Smart contract integration (Phase 4)
+│       ├── services/
+│       │   ├── polygon.service.ts
+│       │   ├── ethers.service.ts
+│       │   └── contract.service.ts
+│       └── contracts/    # Solidity contracts
+├── packages/
+│   ├── shared/           # Types & interfaces
+│   └── config/           # ESLint, Prettier configs
+├── infra/
+│   ├── docker/          # Docker & Compose configs
+│   ├── ci-cd/           # GitHub Actions workflows
+│   └── scripts/         # Migration & setup scripts
+├── docs/
+│   ├── architecture.md  # System design
+│   ├── api-spec.md      # API documentation
+│   └── blockchain.md    # Blockchain guide
+└── android/             # Android app (Phase 6)
+    ├── app/
+    ├── data/            # Room DB, APIs, Repos
+    ├── ui/              # Activities, Fragments
+    └── viewmodel/       # ViewModels
+```
+
+---
+
+## Tech Stack Summary
+
+| Layer | Technology |
+|-------|------------|
+| **Backend** | NestJS, TypeScript, Node.js 18+ |
+| **Database** | PostgreSQL, TypeORM |
+| **Caching** | Redis |
+| **Message Queue** | RabbitMQ |
+| **Blockchain** | Polygon (Mumbai Testnet), Ethers.js, Solidity |
+| **Authentication** | Firebase Authentication, JWT |
+| **Payments** | M-Pesa Daraja, Airtel Money, PayPal |
+| **Mobile** | Android, Kotlin, MVVM, Room DB, Retrofit |
+| **Monitoring** | Prometheus, Grafana, Loki, Sentry |
+| **DevOps** | Docker, GitHub Actions, Render/Fly.io |
+| **Testing** | Jest, Hardhat |
 
 ---
 
 ## Notes
 
-- This roadmap is living and may be updated based on feedback and priorities
-- Each phase builds on the previous one—maintain dependency order
+- This roadmap is living and continuously updated based on community feedback
+- Issues are designed to be completed in phases—maintain dependency order
 - See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed development guidelines
-- See [docs/architecture.md](./docs/architecture.md) for technical architecture
-- All commits should follow [Conventional Commits](https://www.conventionalcommits.org/) standard
+- All commits must follow [Conventional Commits](https://www.conventionalcommits.org/) standard
+- Issues are tagged with difficulty levels and category labels for easy discovery
 
 ---
 
-## Contact & Questions
+## Resources
 
+- 📖 [Documentation](./docs)
 - 💬 [GitHub Discussions](https://github.com/flow-pie/chamaa.api/discussions)
 - 🐛 [Report Issues](https://github.com/flow-pie/chamaa.api/issues)
-- 📧 See CONTRIBUTING.md for more contact options
+- 📋 [Project Board](https://github.com/users/flow-pie/projects/7)
+- 🤝 [Contributing Guide](./CONTRIBUTING.md)
 
 ---
 
-**Last Updated:** November 22, 2025
+**Mission:** Build a transparent, blockchain-powered savings platform for African communities.
 
-**Status:** Ready for Contributors ✅
+**Vision:** Enable financial inclusion through decentralized, community-driven technology.
