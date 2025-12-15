@@ -5,7 +5,7 @@ Chamaa API is a Spring Boot REST API for a community-based lending platform buil
 - Spring Boot 3.2.0
 - Spring Data JPA
 - Spring Security
-- MySQL Database
+- PostgreSQL Database
 - Blockchain Integration (Polygon)
 
 ## Project Structure
@@ -47,7 +47,7 @@ src/
 ## Technology Stack
 - **Framework**: Spring Boot 3.2.0
 - **ORM**: Hibernate/JPA
-- **Database**: MySQL 8.0+
+- **Database**: PostgreSQL 12+
 - **Authentication**: Spring Security (BCrypt)
 - **Blockchain**: Web3j (Polygon integration)
 - **Testing**: JUnit 5

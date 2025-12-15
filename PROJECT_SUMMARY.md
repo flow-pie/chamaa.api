@@ -161,7 +161,7 @@ Server runs on: `http://localhost:8080/api`
 - Spring Boot 3.2.0
 - Spring Data JPA
 - Spring Security (BCrypt)
-- MySQL 8.0+
+- PostgreSQL 12+
 - Web3j (Blockchain)
 - JUnit 5
 - Maven 3.8+
@@ -191,8 +191,8 @@ All with automatic `createdAt` and `updatedAt` timestamps.
 
 ## 🔄 Next Steps
 
-1. ✅ Create MySQL database: `CREATE DATABASE chamaa_db`
-2. ✅ Update `application.properties` with your database credentials
+1. ✅ Create PostgreSQL database: `CREATE DATABASE chamaa_db;`
+2. ✅ Update `application.properties` with your PostgreSQL credentials
 3. ✅ Run `./mvnw spring-boot:run` to start the server
 4. ✅ Test endpoints using Postman/Curl/IDE REST client
 
@@ -211,4 +211,4 @@ See README.md and docs/api-spec.md for full endpoint documentation.
 **Status**: Ready for development 🚀
 **Java Version**: 17+
 **Spring Boot**: 3.2.0
-**Database**: MySQL 8.0+
+**Database**: PostgreSQL 12+

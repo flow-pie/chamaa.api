@@ -1,6 +1,6 @@
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id BIGSERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     first_name VARCHAR(100) NOT NULL,
@@ -15,13 +15,13 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Groups table
 CREATE TABLE IF NOT EXISTS groups (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     creator_id BIGINT NOT NULL,
     member_count INT DEFAULT 0,
     is_active BOOLEAN DEFAULT true,
-    target_amount DOUBLE DEFAULT 0.0,
+    target_amount DOUBLE PRECISION DEFAULT 0.0,
     group_image_url VARCHAR(500),
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS groups (
 
 -- Wallets table
 CREATE TABLE IF NOT EXISTS wallets (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id BIGSERIAL PRIMARY KEY,
     user_id BIGINT UNIQUE NOT NULL,
-    balance DOUBLE DEFAULT 0.0,
+    balance DOUBLE PRECISION DEFAULT 0.0,
     wallet_address VARCHAR(255) UNIQUE,
     currency VARCHAR(10) DEFAULT 'USD',
     is_active BOOLEAN DEFAULT true,
@@ -43,10 +43,10 @@ CREATE TABLE IF NOT EXISTS wallets (
 
 -- Transactions table
 CREATE TABLE IF NOT EXISTS transactions (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id BIGSERIAL PRIMARY KEY,
     from_wallet_id BIGINT NOT NULL,
     to_wallet_id BIGINT NOT NULL,
-    amount DOUBLE NOT NULL,
+    amount DOUBLE PRECISION NOT NULL,
     status VARCHAR(50) DEFAULT 'PENDING',
     transaction_hash VARCHAR(255),
     description TEXT,
@@ -60,15 +60,15 @@ CREATE TABLE IF NOT EXISTS transactions (
 
 -- Loans table
 CREATE TABLE IF NOT EXISTS loans (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id BIGSERIAL PRIMARY KEY,
     borrower_id BIGINT NOT NULL,
     group_id BIGINT NOT NULL,
-    amount DOUBLE NOT NULL,
-    interest_rate DOUBLE DEFAULT 0.0,
+    amount DOUBLE PRECISION NOT NULL,
+    interest_rate DOUBLE PRECISION DEFAULT 0.0,
     status VARCHAR(50) DEFAULT 'PENDING',
     purpose TEXT,
     duration_in_months INT NOT NULL,
-    paid_amount DOUBLE DEFAULT 0.0,
+    paid_amount DOUBLE PRECISION DEFAULT 0.0,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     FOREIGN KEY (borrower_id) REFERENCES users(id),

@@ -7,7 +7,7 @@ A community-based lending platform REST API built with Spring Boot, featuring bl
 ### Prerequisites
 - Java 17+
 - Maven 3.8+
-- MySQL 8.0+
+- PostgreSQL 12+
 
 ### Installation
 
@@ -19,8 +19,8 @@ cd chamaa-api
 
 2. Configure database in `src/main/resources/application.properties`:
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/chamaa_db
-spring.datasource.username=your_username
+spring.datasource.url=jdbc:postgresql://localhost:5432/chamaa_db
+spring.datasource.username=postgres
 spring.datasource.password=your_password
 ```
 
@@ -94,7 +94,7 @@ blockchain.polygon.chain-id=137
 
 ## 📊 Database
 
-The application uses MySQL with the following tables:
+The application uses PostgreSQL with the following tables:
 - **users** - User accounts
 - **groups** - Community lending groups
 - **wallets** - User wallets
