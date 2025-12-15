@@ -20,6 +20,7 @@ dependency-reduced-pom.xml
 .classpath
 *.iml
 *.iws
+*.ipr
 
 # Build
 *.class
@@ -33,21 +34,37 @@ dependency-reduced-pom.xml
 .env
 .env.local
 .env.*.local
+application-local.properties
 
 # Logs
 logs/
 *.log
+log4j.log
 
 # Database
 *.db
 *.sqlite
+chamaa_db/
 
-# Node (legacy)
+# Node (legacy TypeScript files)
 node_modules/
 pnpm-lock.yaml
 package-lock.json
 dist/
+build/
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Runtime
+.mvn/wrapper/maven-wrapper.jar
+
+# Testing
+.coverage
+.jacoco
+
+# IDE specific
+workspace.xml
+*.sublime-workspace
+.gradle/
