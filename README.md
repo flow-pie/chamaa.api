@@ -2,7 +2,7 @@
 
 A community-based lending platform REST API built with Spring Boot, featuring blockchain integration for secure loan management.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Java 17+
@@ -36,13 +36,13 @@ spring.datasource.password=your_password
 
 The API will be available at `http://localhost:8080/api`
 
-## 📚 Documentation
+## Documentation
 
 - [API Specification](docs/api-spec.md) - Complete API endpoints documentation
 - [Architecture](docs/architecture.md) - Project structure and design patterns
 - [Blockchain Integration](docs/blockchain.md) - Blockchain service details
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 chamaa-api/
@@ -92,7 +92,7 @@ blockchain.polygon.rpc-url=https://polygon-rpc.com
 blockchain.polygon.chain-id=137
 ```
 
-## 📊 Database
+## Database
 
 The application uses PostgreSQL with the following tables:
 - **users** - User accounts
@@ -103,14 +103,14 @@ The application uses PostgreSQL with the following tables:
 
 Database schema is auto-initialized on startup.
 
-## 🔐 Security
+## Security
 
 - Passwords encrypted using BCrypt
 - Spring Security integration
 - JWT token support (to be implemented)
 - API request validation
 
-## 🧪 Testing
+## Testing
 
 Run unit tests:
 ```bash
@@ -122,7 +122,7 @@ Run all tests with coverage:
 ./mvnw clean test jacoco:report
 ```
 
-## 📝 API Examples
+## API Examples
 
 ### Create User
 ```bash
@@ -165,7 +165,7 @@ Content-Type: application/json
 }
 ```
 
-## 🔄 CI/CD
+## CI/CD
 
 GitHub Actions workflow for:
 - Build verification
@@ -173,7 +173,7 @@ GitHub Actions workflow for:
 - Code quality checks
 - Automated deployment
 
-## 🌐 Blockchain Integration
+## Blockchain Integration
 
 Built with Polygon network support via Web3j:
 - Smart contract deployment
@@ -181,7 +181,7 @@ Built with Polygon network support via Web3j:
 - Loan agreement execution
 - Payment verification
 
-## 📦 Dependencies
+## Dependencies
 
 - Spring Boot 3.2.0
 - Spring Data JPA
@@ -192,33 +192,3 @@ Built with Polygon network support via Web3j:
 - JUnit 5
 - Springdoc OpenAPI (Swagger)
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
-## 📧 Contact
-
-For questions or support, reach out to the development team.
-
-## 🗺️ Roadmap
-
-- [ ] JWT Authentication
-- [ ] Role-based Access Control
-- [ ] API Documentation (Swagger UI)
-- [ ] Payment gateway integration
-- [ ] Mobile app API
-- [ ] Advanced analytics
-- [ ] Loan calculator service
-- [ ] Automated loan approval
-
----
-
-**Status**: Under Development 🚧
