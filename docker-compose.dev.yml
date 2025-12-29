@@ -1,0 +1,56 @@
+version: '3.8'
+
+# Development environment with hot-reload and debugging
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      cache_from:
+        - chamaa-api:dev
+    image: chamaa-api:dev
+    container_name: chamaa-api-dev
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      MAVEN_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xmx512m"
+      # Development uses H2 by default
+      DB_URL: jdbc:h2:mem:chamaadb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
+      DB_USERNAME: sa
+      DB_PASSWORD: 
+    ports:
+      - "8080:8080"
+      - "5005:5005"  # Debug port
+    volumes:
+      - .:/app:cached
+      - ~/.m2:/home/appuser/.m2:cached
+      - /app/target  # Exclude target directory from sync
+    command: >
+      bash -c "mvn clean spring-boot:run 
+               -Dspring-boot.run.arguments='--spring.profiles.active=dev'"
+    networks:
+      - chamaa-network
+    stdin_open: true
+    tty: true
+
+  # Lightweight PostgreSQL for optional testing
+  postgres-dev:
+    image: postgres:16-alpine
+    container_name: chamaa-postgres-dev
+    environment:
+      POSTGRES_DB: chamaa_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"  # Different port from production
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    networks:
+      - chamaa-network
+    profiles:
+      - postgres  # Only run if explicitly enabled
+
+volumes:
+  postgres_dev_data:
+    driver: local

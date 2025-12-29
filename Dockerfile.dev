@@ -1,0 +1,26 @@
+# Development Dockerfile with Maven and hot-reload
+# Usage: docker build -f Dockerfile.dev -t chamaa-api:dev .
+
+FROM maven:3.9-eclipse-temurin-21
+
+WORKDIR /app
+
+# Install additional dev tools
+RUN apt-get update && apt-get install -y \
+    curl \
+    vim \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy project files
+COPY pom.xml .
+COPY src ./src
+
+# Download dependencies
+RUN mvn dependency:resolve dependency:resolve-plugins -B
+
+# Expose ports
+EXPOSE 8080 5005
+
+# Default command (can be overridden)
+CMD ["mvn", "clean", "spring-boot:run"]
