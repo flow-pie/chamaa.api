@@ -1,0 +1,45 @@
+# fly.io configuration for Chamaa API
+app = "chamaa-api"
+primary_region = "iad"
+
+[build]
+  builder = "docker"
+
+[env]
+  PORT = "8080"
+  SPRING_PROFILES_ACTIVE = "prod"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+  
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+[checks]
+  [checks.http]
+    grace_period = "30s"
+    interval = "15s"
+    method = "GET"
+    path = "/api/health"
+    protocol = "http"
+    timeout = "5s"
+    tls_skip_verify = false
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+[metrics]
+  handlers = ["http_requests_by_status"]
+  port = 9090
