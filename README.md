@@ -1,162 +1,204 @@
-# Chamaa Api ( Decentralized Savings & Lending Circle App)
+# Chamaa API
 
-### Transparent. Borderless. Community-Driven.
+A community-based lending platform REST API built with Spring Boot, featuring blockchain integration for secure loan management.
 
----
-
-## Overview
-
-Traditional savings groups (*Chamas / Harambees*) are built on **trust** — but too often, funds get mismanaged or “lost.”  
-**Chamaa app** solves this by combining **blockchain transparency** with **mobile money integration**, allowing trusted savings, loans, and investments directly from your phone.
-
----
-
-## Problem
-
-- Manual record-keeping and opaque treasurer systems lead to **fund mismanagement**.  
-- Cross-network members (M-Pesa, Airtel, PayPal, etc.) face **payment friction**.  
-- No immutable record of votes, loans, or repayments.  
-
----
-
-## Solution
-
-A **blockchain-powered mobile app** where:
-- Every contribution, withdrawal, and loan repayment is recorded on-chain.  
-- Members can **vote** on proposals and **view transparent ledgers**.  
-- Funds flow via **M-Pesa**, **Airtel Money**, **PayPal**, or **bank accounts**.  
-- Rules (loan limits, penalties, voting rights) are enforced via **smart contracts**.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-------------|
-| Backend | Node.js (NestJS, TypeScript), PostgreSQL |
-| Blockchain | Ethereum / Polygon Testnet via Ethers.js |
-| Mobile Money APIs | M-Pesa Daraja, Airtel Money, PayPal REST |
-| Frontend | Android (Java / Jetpack Compose) |
-| Auth | Firebase Authentication (Phone / Email) |
-| Hosting | Docker + Render (API) |
-
----
-
-## Screenshots & Mockups
-
-> *Figma mockups coming soon — see `/designs/` folder.*
-
----
-
-## Roadmap
-See [ROADMAP.md](./ROADMAP.md) for planned features and development phases.
-
----
-
-## Contributing
-We welcome contributions! Whether it's code, docs, or design ideas:
-- Fork the repo
-- Create a feature branch (`git checkout -b feature/amazing-thing`)
-- Commit your changes
-- Open a Pull Request 
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
-
----
-
-## Getting Started
+## Quick Start
 
 ### Prerequisites
-- **Node.js** 18+ ([Download](https://nodejs.org/))
-- **pnpm** 8+ (preferred for monorepo): `npm install -g pnpm`
-- **Git**
+- Java 17+
+- Maven 3.8+
+- PostgreSQL 12+
 
 ### Installation
 
+1. Clone the repository:
 ```bash
-# 1. Clone the repository
-git clone https://github.com/flow-pie/chamaa.api.git
+git clone https://github.com/flow-pie/chamaa.api
 cd chamaa.api
+```
 
-# 2. Install dependencies
-pnpm install
-
-# 3. Set up environment variables
+2. Configure environment variables:
+```bash
+# Copy the example environment file
 cp .env.example .env
-# Edit .env with your configuration (API keys, RPC URLs, etc.)
+
+# Edit .env with your local configuration
+nano .env
 ```
 
-### Development
-
-#### Run all services
+3. Build the project:
 ```bash
-# Start all apps in watch mode
-pnpm dev
+./mvnw clean install
 ```
 
-#### Run specific app
+4. Run the application:
 ```bash
-# API server
-pnpm dev --filter=api
-
-# Blockchain integration
-pnpm dev --filter=@apps/blockchain
+./mvnw spring-boot:run
 ```
 
-#### Quality Checks
+The API will be available at `http://localhost:8080/api`
+
+## Documentation
+
+- [API Specification](docs/api-spec.md) - Complete API endpoints documentation
+- [Architecture](docs/architecture.md) - Project structure and design patterns
+- [Blockchain Integration](docs/blockchain.md) - Blockchain service details
+
+## Project Structure
+
+```
+chamaa-api/
+├── pom.xml                                    # Maven configuration
+├── src/
+│   ├── main/
+│   │   ├── java/com/chamaa/
+│   │   │   ├── ChamaaApplication.java        # Main application entry
+│   │   │   ├── config/                       # Configuration classes
+│   │   │   ├── common/                       # Shared utilities
+│   │   │   ├── entities/                     # JPA entities
+│   │   │   ├── repositories/                 # Data access layer
+│   │   │   ├── services/                     # Business logic
+│   │   │   ├── controllers/                  # REST endpoints
+│   │   │   └── blockchain/                   # Blockchain services
+│   │   └── resources/
+│   │       ├── application.properties        # Configuration
+│   │       └── db/schema.sql                 # Database schema
+│   └── test/
+│       └── java/com/chamaa/                  # Unit tests
+├── docs/
+│   ├── api-spec.md                          # API documentation
+│   ├── architecture.md                      # Architecture guide
+│   └── blockchain.md                        # Blockchain integration
+└── README.md
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+All sensitive configuration is managed through environment variables. Copy `.env.example` to `.env` and configure your values:
+
 ```bash
-# Lint all code
-pnpm lint
-
-# Build all apps
-pnpm build
-
-# Run tests
-pnpm test
-
-# Run API tests in watch mode
-pnpm test --filter=api --watch
+cp .env.example .env
 ```
 
-### Project Structure
+**Core Environment Variables:**
+- `PORT` - Server port (default: 8080)
+- `DB_URL` - PostgreSQL connection URL
+- `DB_USERNAME` - Database username
+- `DB_PASSWORD` - Database password
+- `JPA_DDL_AUTO` - JPA DDL strategy (validate, update, create, create-drop)
+- `POLYGON_RPC_URL` - Polygon RPC endpoint
+- `POLYGON_CHAIN_ID` - Polygon chain ID
 
+**Logging Levels:**
+- `LOG_LEVEL_ROOT` - Root logging level
+- `LOG_LEVEL_CHAMAA` - Chamaa application logging level
+- `LOG_LEVEL_SPRING_WEB` - Spring Web logging level
+- `LOG_LEVEL_HIBERNATE` - Hibernate logging level
+
+**⚠️ Security Notes:**
+- **Never commit `.env` file** - it's excluded in `.gitignore`
+- **Always use `.env.example`** for defaults and documentation
+- In production, use a secrets manager (Vault, AWS Secrets Manager, etc.)
+- Environment variables override `.env` file values
+
+## Database
+
+The application uses PostgreSQL with the following tables:
+- **users** - User accounts
+- **groups** - Community lending groups
+- **wallets** - User wallets
+- **transactions** - Transaction history
+- **loans** - Loan records
+
+Database schema is auto-initialized on startup.
+
+## Security
+
+- Passwords encrypted using BCrypt
+- Spring Security integration
+- JWT token support (to be implemented)
+- API request validation
+
+## Testing
+
+Run unit tests:
+```bash
+./mvnw test
 ```
-chamaa.api/
-├── apps/
-│   ├── api/          # NestJS REST API
-│   └── blockchain/   # Ethers.js smart contract integration
-├── packages/
-│   └── shared/       # Shared utilities and types
-├── .env.example      # Environment variables template
-├── turbo.json        # Monorepo build configuration
-└── tsconfig.base.json # Base TypeScript configuration
+
+Run all tests with coverage:
+```bash
+./mvnw clean test jacoco:report
 ```
 
----
+## API Examples
 
-## 📚 Documentation
+### Create User
+```bash
+POST /api/users
+Content-Type: application/json
 
-- [CONTRIBUTING.md](./CONTRIBUTING.md) - Contributing guidelines
-- [ROADMAP.md](./ROADMAP.md) - Project roadmap and phases
-- [docs/architecture.md](./docs/architecture.md) - Architecture overview
-- [docs/blockchain.md](./docs/blockchain.md) - Blockchain integration guide
+{
+  "email": "john@example.com",
+  "password": "password123",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phoneNumber": "+254712345678"
+}
+```
 
----
+### Create Group
+```bash
+POST /api/groups
+Content-Type: application/json
 
-## 🚀 Deployment
+{
+  "name": "Community Savings",
+  "description": "Group for community savings",
+  "creatorId": 1,
+  "targetAmount": 10000.0
+}
+```
 
-See [ROADMAP Phase 1](./ROADMAP.md) for deployment instructions using Docker + Render.
+### Request Loan
+```bash
+POST /api/loans
+Content-Type: application/json
 
----
+{
+  "borrowerId": 1,
+  "groupId": 1,
+  "amount": 5000.0,
+  "durationInMonths": 12,
+  "purpose": "Business expansion"
+}
+```
 
-## 📄 License
+## CI/CD
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+GitHub Actions workflow for:
+- Build verification
+- Unit tests
+- Code quality checks
+- Automated deployment
 
----
+## Blockchain Integration
 
-## Support
+Built with Polygon network support via Web3j:
+- Smart contract deployment
+- Transaction recording
+- Loan agreement execution
+- Payment verification
 
-- 📖 [Documentation](./docs)
-- 💬 [Issues](https://github.com/flow-pie/chamaa.api/issues)
-- 💡 [Discussions](https://github.com/flow-pie/chamaa.api/discussions)
+## Dependencies
+
+- Spring Boot 3.2.0
+- Spring Data JPA
+- Spring Security
+- MySQL Connector
+- Lombok
+- Web3j
+- JUnit 5
+- Springdoc OpenAPI (Swagger)
+

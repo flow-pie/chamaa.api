@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: chamaa-api
+    env: docker
+    region: oregon
+    plan: starter
+    
+    buildCommand: ./mvnw clean package -DskipTests -B
+    startCommand: java -jar target/chamaa-api-*.jar
+    
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: POLYGON_RPC_URL
+        value: https://polygon-rpc.com
+      - key: POLYGON_CHAIN_ID
+        value: "137"
+    
+    healthCheckPath: /api/health
+    healthCheckInterval: 30
+    healthCheckTimeout: 5
+    
+    autoDeploy: true
+    preDeployCommand: ./mvnw clean verify -B
+    
+    disks:
+      - name: data
+        mountPath: /app/data
+        sizeGB: 1
