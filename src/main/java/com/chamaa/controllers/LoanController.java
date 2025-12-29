@@ -2,7 +2,6 @@ package com.chamaa.controllers;
 
 import com.chamaa.entities.Loan;
 import com.chamaa.services.LoanService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/loans")
-@RequiredArgsConstructor
 public class LoanController {
+
+    public LoanController(LoanService loanService) {
+        this.loanService = loanService;
+    }
 
     private final LoanService loanService;
 

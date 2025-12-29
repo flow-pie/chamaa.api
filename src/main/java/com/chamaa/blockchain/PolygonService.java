@@ -1,11 +1,9 @@
 package com.chamaa.blockchain;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class PolygonService {
 
     @Value("${blockchain.polygon.rpc-url}")

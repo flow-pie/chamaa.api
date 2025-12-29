@@ -1,10 +1,8 @@
 package com.chamaa.blockchain;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class BlockchainService {
 
     public String submitTransaction(String fromAddress, String toAddress, Double amount) {

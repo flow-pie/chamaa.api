@@ -1,11 +1,13 @@
 package com.chamaa.blockchain;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class ContractService {
+
+    public ContractService(BlockchainService blockchainService) {
+        this.blockchainService = blockchainService;
+    }
 
     private final BlockchainService blockchainService;
 

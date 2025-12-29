@@ -2,7 +2,6 @@ package com.chamaa.controllers;
 
 import com.chamaa.entities.Group;
 import com.chamaa.services.GroupService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/groups")
-@RequiredArgsConstructor
 public class GroupController {
+
+    public GroupController(GroupService groupService) {
+        this.groupService = groupService;
+    }
 
     private final GroupService groupService;
 

@@ -2,15 +2,17 @@ package com.chamaa.controllers;
 
 import com.chamaa.entities.Wallet;
 import com.chamaa.services.WalletService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/wallets")
-@RequiredArgsConstructor
 public class WalletController {
+
+    public WalletController(WalletService walletService) {
+        this.walletService = walletService;
+    }
 
     private final WalletService walletService;
 
