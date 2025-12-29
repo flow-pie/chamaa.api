@@ -1,10 +1,15 @@
 package com.chamaa.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "app")
+@Getter
+@Setter
 public class AppProperties {
     private String name = "Chamaa API";
     private String version = "1.0.0";
