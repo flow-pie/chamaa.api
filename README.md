@@ -13,15 +13,17 @@ A community-based lending platform REST API built with Spring Boot, featuring bl
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd chamaa-api
+git clone https://github.com/flow-pie/chamaa.api
+cd chamaa.api
 ```
 
-2. Configure database in `src/main/resources/application.properties`:
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/chamaa_db
-spring.datasource.username=postgres
-spring.datasource.password=your_password
+2. Configure environment variables:
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit .env with your local configuration
+nano .env
 ```
 
 3. Build the project:
@@ -72,25 +74,33 @@ chamaa-api/
 
 ## 🔧 Configuration
 
-### Application Properties
-```properties
-# Server
-server.port=8080
-server.servlet.context-path=/api
+### Environment Variables
+All sensitive configuration is managed through environment variables. Copy `.env.example` to `.env` and configure your values:
 
-# Database
-spring.datasource.url=jdbc:mysql://localhost:3306/chamaa_db
-spring.datasource.username=root
-spring.datasource.password=
-
-# JPA
-spring.jpa.hibernate.ddl-auto=validate
-spring.jpa.show-sql=false
-
-# Blockchain
-blockchain.polygon.rpc-url=https://polygon-rpc.com
-blockchain.polygon.chain-id=137
+```bash
+cp .env.example .env
 ```
+
+**Core Environment Variables:**
+- `PORT` - Server port (default: 8080)
+- `DB_URL` - PostgreSQL connection URL
+- `DB_USERNAME` - Database username
+- `DB_PASSWORD` - Database password
+- `JPA_DDL_AUTO` - JPA DDL strategy (validate, update, create, create-drop)
+- `POLYGON_RPC_URL` - Polygon RPC endpoint
+- `POLYGON_CHAIN_ID` - Polygon chain ID
+
+**Logging Levels:**
+- `LOG_LEVEL_ROOT` - Root logging level
+- `LOG_LEVEL_CHAMAA` - Chamaa application logging level
+- `LOG_LEVEL_SPRING_WEB` - Spring Web logging level
+- `LOG_LEVEL_HIBERNATE` - Hibernate logging level
+
+**⚠️ Security Notes:**
+- **Never commit `.env` file** - it's excluded in `.gitignore`
+- **Always use `.env.example`** for defaults and documentation
+- In production, use a secrets manager (Vault, AWS Secrets Manager, etc.)
+- Environment variables override `.env` file values
 
 ## Database
 
