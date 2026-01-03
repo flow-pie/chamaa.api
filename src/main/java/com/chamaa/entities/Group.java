@@ -5,14 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "groups")
+@Table(name = "groups", indexes = {
+    @Index(name = "idx_groups_creator_id", columnList = "creator_id"),
+    @Index(name = "idx_groups_is_active", columnList = "is_active"),
+    @Index(name = "idx_groups_name", columnList = "name")
+})
 @Getter
 @Setter
 public class Group extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String name;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,6 +33,7 @@ public class Group extends BaseEntity {
     @Column(nullable = false)
     private Double targetAmount = 0.0;
 
+    @Column(length = 500)
     private String groupImageUrl;
 
     public String getName() {
