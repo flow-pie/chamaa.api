@@ -5,7 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "loans")
+@Table(name = "loans", indexes = {
+    @Index(name = "idx_loans_borrower_id", columnList = "borrower_id"),
+    @Index(name = "idx_loans_group_id", columnList = "group_id"),
+    @Index(name = "idx_loans_status", columnList = "status"),
+    @Index(name = "idx_loans_created_at", columnList = "created_at")
+})
 @Getter
 @Setter
 public class Loan extends BaseEntity {
@@ -24,9 +29,10 @@ public class Loan extends BaseEntity {
     @Column(nullable = false)
     private Double interestRate = 0.0;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String status = "PENDING";
 
+    @Column(columnDefinition = "TEXT")
     private String purpose;
 
     @Column(nullable = false)
