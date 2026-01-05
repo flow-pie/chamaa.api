@@ -1,0 +1,83 @@
+.
+├── chamaa.api
+├── CONTRIBUTING.md
+├── docs
+│   ├── api-spec.md
+│   ├── architecture.md
+│   └── blockchain.md
+├── LICENSE
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── README.md
+├── ROADMAP.md
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── chamaa
+│   │   │           ├── blockchain
+│   │   │           │   ├── BlockchainService.java
+│   │   │           │   ├── ContractService.java
+│   │   │           │   └── PolygonService.java
+│   │   │           ├── ChamaaApplication.java
+│   │   │           ├── common
+│   │   │           │   ├── exceptions
+│   │   │           │   │   └── ApiException.java
+│   │   │           │   └── utils
+│   │   │           │       └── DateUtils.java
+│   │   │           ├── config
+│   │   │           │   ├── AppProperties.java
+│   │   │           │   ├── DatabaseConfig.java
+│   │   │           │   └── SecurityConfig.java
+│   │   │           ├── controllers
+│   │   │           │   ├── GroupController.java
+│   │   │           │   ├── LoanController.java
+│   │   │           │   ├── UserController.java
+│   │   │           │   └── WalletController.java
+│   │   │           ├── entities
+│   │   │           │   ├── BaseEntity.java
+│   │   │           │   ├── Group.java
+│   │   │           │   ├── Loan.java
+│   │   │           │   ├── Transaction.java
+│   │   │           │   ├── User.java
+│   │   │           │   └── Wallet.java
+│   │   │           ├── repositories
+│   │   │           │   ├── GroupRepository.java
+│   │   │           │   ├── LoanRepository.java
+│   │   │           │   ├── TransactionRepository.java
+│   │   │           │   ├── UserRepository.java
+│   │   │           │   └── WalletRepository.java
+│   │   │           └── services
+│   │   │               ├── GroupService.java
+│   │   │               ├── LoanService.java
+│   │   │               ├── UserService.java
+│   │   │               └── WalletService.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       └── db
+│   │           └── schema.sql
+│   └── test
+│       └── java
+│           └── com
+│               └── chamaa
+│                   ├── ChamaaApplicationTests.java
+│                   ├── GroupServiceTest.java
+│                   ├── LoanServiceTest.java
+│                   └── UserServiceTest.java
+├── structure.txt
+└── target
+    ├── classes
+    │   ├── application.properties
+    │   └── db
+    │       └── schema.sql
+    ├── generated-sources
+    │   └── annotations
+    └── maven-status
+        └── maven-compiler-plugin
+            └── compile
+                └── default-compile
+                    ├── createdFiles.lst
+                    └── inputFiles.lst
+
+31 directories, 50 files
