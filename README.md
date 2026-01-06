@@ -154,10 +154,15 @@ SPRING_PROFILES_ACTIVE=prod ./mvnw spring-boot:run
 
 ## Security
 
-- Passwords encrypted using BCrypt
-- Spring Security integration
-- JWT token support (to be implemented)
-- API request validation
+- Authentication handled by Firebase
+
+- Password hashing managed by Firebase
+
+- Firebase-issued JWTs (ID tokens)
+
+- Spring Security used as a resource server
+
+- Backend validates tokens via Firebase Admin SDK
 
 ## Testing
 
