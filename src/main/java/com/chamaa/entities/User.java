@@ -5,31 +5,38 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = {
+    @Index(name = "idx_users_email", columnList = "email", unique = true),
+    @Index(name = "idx_users_phone_number", columnList = "phone_number", unique = true),
+    @Index(name = "idx_users_wallet_address", columnList = "wallet_address"),
+    @Index(name = "idx_users_is_active", columnList = "is_active")
+})
 @Getter
 @Setter
 public class User extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 255)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String lastName;
 
-    @Column(unique = true)
+    @Column(unique = true, length = 20)
     private String phoneNumber;
 
+    @Column(length = 500)
     private String profileImageUrl;
 
     @Column(nullable = false)
     private Boolean isActive = true;
 
+    @Column(length = 255)
     private String walletAddress;
 
     public String getPassword() {

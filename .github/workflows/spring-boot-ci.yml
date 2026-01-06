@@ -3,14 +3,18 @@ name: Spring Boot CI
 on:
   push:
     branches:
-      - main
+      - release
       - develop
       - feature/**
   pull_request:
     branches:
-      - main
+      - release
       - develop
-
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+      
 jobs:
   build:
     name: Build & Test

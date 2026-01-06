@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: chamaa-postgres
+    environment:
+      POSTGRES_DB: chamaa_db
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chamaa-network
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: chamaa-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_password}
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chamaa-network
+    restart: unless-stopped
+
+  # Spring Boot API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      cache_from:
+        - chamaa-api:latest
+    image: chamaa-api:latest
+    container_name: chamaa-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      SERVER_PORT: ${PORT:-8080}
+      
+      # Database Configuration
+      DB_URL: ${DB_URL:-jdbc:postgresql://postgres:5432/chamaa_db}
+      DB_USERNAME: ${DB_USERNAME:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      
+      # Redis Configuration
+      REDIS_HOST: ${REDIS_HOST:-redis}
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_password}
+      
+      # Blockchain Configuration
+      POLYGON_RPC_URL: ${POLYGON_RPC_URL:-https://polygon-rpc.com}
+      POLYGON_CHAIN_ID: ${POLYGON_CHAIN_ID:-137}
+      
+      # Logging
+      LOG_LEVEL_ROOT: ${LOG_LEVEL_ROOT:-INFO}
+      LOG_LEVEL_CHAMAA: ${LOG_LEVEL_CHAMAA:-DEBUG}
+      LOG_LEVEL_SPRING_WEB: ${LOG_LEVEL_SPRING_WEB:-INFO}
+      LOG_LEVEL_HIBERNATE: ${LOG_LEVEL_HIBERNATE:-WARN}
+    
+    ports:
+      - "${PORT:-8080}:8080"
+    
+    volumes:
+      # Development: Live reload with source code mounting
+      - ./src:/app/src:ro
+      - ./pom.xml:/app/pom.xml:ro
+      - ~/.m2:/home/appuser/.m2:cached
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 40s
+    
+    networks:
+      - chamaa-network
+    
+    restart: unless-stopped
+
+networks:
+  chamaa-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

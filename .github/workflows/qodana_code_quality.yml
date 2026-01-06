@@ -1,13 +1,22 @@
+qodana-automation-250274106
+
+#-------------------------------------------------------------------------------#
+#            Discover all capabilities of Qodana in our documentation           #
+#             https://www.jetbrains.com/help/qodana/about-qodana.html           #
+#-------------------------------------------------------------------------------#
+
 name: Qodana
 on:
   workflow_dispatch:
   pull_request:
+      branches:
+          - release
+          - develop
+  push:
     branches:
       - release
-  push:
-    branches: # Specify your branches here
-      - release # The 'main' branch
-      - develop # The release branches
+      - develop
+      - feature/**
 
 jobs:
   qodana:
