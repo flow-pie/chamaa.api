@@ -5,7 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "transactions")
+@Table(name = "transactions", indexes = {
+    @Index(name = "idx_transactions_from_wallet", columnList = "from_wallet_id"),
+    @Index(name = "idx_transactions_to_wallet", columnList = "to_wallet_id"),
+    @Index(name = "idx_transactions_group", columnList = "group_id"),
+    @Index(name = "idx_transactions_status", columnList = "status"),
+    @Index(name = "idx_transactions_created_at", columnList = "created_at")
+})
 @Getter
 @Setter
 public class Transaction extends BaseEntity {
@@ -21,14 +27,17 @@ public class Transaction extends BaseEntity {
     @Column(nullable = false)
     private Double amount;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String status = "PENDING";
 
+    @Column(length = 255)
     private String transactionHash;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
 }
+

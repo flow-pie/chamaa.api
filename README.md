@@ -104,14 +104,53 @@ cp .env.example .env
 
 ## Database
 
-The application uses PostgreSQL with the following tables:
-- **users** - User accounts
-- **groups** - Community lending groups
-- **wallets** - User wallets
-- **transactions** - Transaction history
-- **loans** - Loan records
+The application uses a sophisticated database setup with support for both development and production environments:
 
-Database schema is auto-initialized on startup.
+### Databases Supported
+- **PostgreSQL** (Production & Staging) - Relational database with full ACID compliance
+- **H2** (Development & Testing) - In-memory database with PostgreSQL mode for compatibility
+
+### Key Features
+- **Spring Data JPA** with Hibernate ORM for object-relational mapping
+- **HikariCP** connection pooling for efficient resource management
+- **Flyway** database migrations for versioned schema changes
+- **Lazy loading** on all relationships to prevent N+1 queries
+- **Strategic indexes** on frequently queried columns for performance
+- **Cascade/Restrict delete** policies for data integrity
+
+### Tables
+- **users** - User accounts with validation
+- **groups** - Community lending groups
+- **wallets** - User wallets with balance tracking
+- **transactions** - Transaction history between wallets
+- **loans** - Loan records within groups
+
+### Running with Different Databases
+
+**Development (H2 - Default)**
+```bash
+./mvnw spring-boot:run
+# Uses H2 in-memory database
+# Schema auto-created with create-drop strategy
+```
+
+**Development (with Docker PostgreSQL)**
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+# Starts PostgreSQL in Docker for realistic testing
+```
+
+**Production (PostgreSQL)**
+```bash
+SPRING_PROFILES_ACTIVE=prod ./mvnw spring-boot:run
+# Requires FLYWAY_ENABLED=true for migration execution
+# Uses validate strategy (no auto schema changes)
+```
+
+### Database Configuration
+- See [DATABASE_SETUP.md](docs/DATABASE_SETUP.md) for comprehensive database documentation
+- Configure via environment variables: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`
+- Connection pool settings: `DB_POOL_SIZE`, `DB_MIN_IDLE`
 
 ## Security
 
@@ -131,6 +170,13 @@ Run all tests with coverage:
 ```bash
 ./mvnw clean test jacoco:report
 ```
+
+### Database Testing
+The application includes comprehensive tests with:
+- H2 in-memory database for unit tests
+- JPA entity mapping validation
+- Service layer business logic tests
+- All tests use PostgreSQL-compatible H2 mode
 
 ## API Examples
 
