@@ -12,10 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.chama.ui.theme.ChamaAppTheme
-
+import com.example.chama.network.TokenManager
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TokenManager.init(this)
         enableEdgeToEdge()
         setContent {
             ChamaAppTheme {
