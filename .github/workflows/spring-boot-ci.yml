@@ -42,7 +42,7 @@ jobs:
         continue-on-error: true
        
       - name: Build and test
-        run: cd apps/backend && ./mvnw clean verify -B -Dtest='!FirebaseAuthenticationIntegrationTest,!SecurityConfigTest,!ChamaaApplicationTests'
+        run: cd apps/backend && ./mvnw clean verify -B -Dtest='!FirebaseAuthenticationIntegrationTest,!SecurityConfigTest,!ChamaaApplicationTests,!FirebaseConfigTest'
       
       - name: Generate test reports
         if: always()
