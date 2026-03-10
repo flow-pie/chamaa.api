@@ -69,7 +69,7 @@ jobs:
       - name: Build Docker image
         if: success()
         run: |
-          docker build -t chamaa-api:${{ github.sha }} -t chamaa-api:latest apps/backend
+          docker build -f infra/Dockerfile -t chamaa-api:${{ github.sha }} -t chamaa-api:latest apps/backend
       
       - name: Upload build artifacts
         if: success()
