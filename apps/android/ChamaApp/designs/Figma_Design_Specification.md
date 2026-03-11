@@ -1,5 +1,11 @@
 # ChamaApp Design System - Figma Implementation Guide
 
+> **Important:** This document is the **design source of truth** for the ChamaApp project. All colors, spacing, typography, and design specifications defined here should be used by developers.
+>
+> **HTML Screens:** The `screens.html` file exists as a functional reference for developers to see UI implementations. However, it should NOT be used as the design source of truth. Refer to this document for colors, spacing, typography, and component specifications.
+>
+> **Figma Designs:** Coming soon! Professional Figma designs will be created based on this specification document and will become the visual design source of truth once available.
+
 ## Design System Overview
 
 ### Brand Colors
