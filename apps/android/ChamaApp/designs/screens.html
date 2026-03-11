@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChamaApp - Screen Designs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A237E;
+            --primary-light: #3949AB;
+            --primary-dark: #0D1442;
+            --accent: #FFD700;
+            --accent-light: #FFE57F;
+            --bg-gradient-start: #E8EEF6;
+            --bg-gradient-end: #F8F9FC;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-tertiary: #94A3B8;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --error: #EF4444;
+            --error-light: #FEE2E2;
+            --white: #FFFFFF;
+            --divider: #E2E8F0;
+            --card-shadow: 0 4px 24px rgba(26, 35, 126, 0.08);
+            --card-shadow-hover: 0 8px 32px rgba(26, 35, 126, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #E8EEF6 0%, #F8F9FC 50%, #EEF2F7 100%);
+            min-height: 100vh;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 14px 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .nav::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .nav a {
+            padding: 8px 14px;
+            border-radius: 24px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav a:hover {
+            color: var(--primary);
+            background: rgba(26, 35, 126, 0.05);
+        }
+        
+        /* Active state based on which screen is targeted */
+        .nav a[href="#welcome"]:target,
+        .nav a[href="#signin"]:target,
+        .nav a[href="#signup"]:target,
+        .nav a[href="#home"]:target,
+        .nav a[href="#groups"]:target,
+        .nav a[href="#loans"]:target,
+        .nav a[href="#wallet"]:target,
+        .nav a[href="#profile"]:target,
+        .nav a[href="#admin"]:target {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+        }
+        
+        .container {
+            max-width: 440px;
+            margin: 80px auto 60px;
+            padding: 16px;
+        }
+        
+        .screen {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 48px;
+            box-shadow: var(--card-shadow);
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        /* Hash-based routing - show screen when URL has hash */
+        .screen:target {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .phone-frame {
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--white) 30%, var(--bg-gradient-end) 100%);
+            min-height: 780px;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .phone-frame::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .status-bar {
+            height: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(26, 35, 126, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(26, 35, 126, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--text-primary);
+            border: 1.5px solid var(--divider);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(26, 35, 126, 0.02);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1.5px solid var(--divider);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+        }
+        
+        .btn-sm {
+            padding: 10px 18px;
+            font-size: 13px;
+            border-radius: 12px;
+            width: auto;
+        }
+        
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 14px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1.5px solid var(--divider);
+            border-radius: 14px;
+            font-size: 15px;
+            margin-bottom: 14px;
+            background: var(--white);
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.08);
+        }
+        
+        .input-field::placeholder {
+            color: var(--text-tertiary);
+        }
+        
+        .input-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .card-elevated {
+            box-shadow: var(--card-shadow);
+        }
+        
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-tertiary { color: var(--text-tertiary); }
+        .text-success { color: var(--success); }
+        .text-warning { color: var(--warning); }
+        .text-error { color: var(--error); }
+        
+        .text-h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+        .text-h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+        .text-h3 { font-size: 20px; font-weight: 600; }
+        .text-h4 { font-size: 17px; font-weight: 600; }
+        .text-body { font-size: 15px; }
+        .text-body-sm { font-size: 14px; }
+        .text-caption { font-size: 12px; }
+        .text-caption-lg { font-size: 13px; }
+        
+        .mb-xs { margin-bottom: 4px; }
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 16px; }
+        .mb-lg { margin-bottom: 24px; }
+        .mb-xl { margin-bottom: 32px; }
+        
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-sm { gap: 8px; }
+        .gap-md { gap: 16px; }
+        
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .avatar-lg { width: 88px; height: 88px; font-size: 28px; }
+        .avatar-sm { width: 40px; height: 40px; font-size: 13px; }
+        .avatar-xs { width: 32px; height: 32px; font-size: 11px; }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        
+        .badge-primary { background: rgba(26, 35, 126, 0.1); color: var(--primary); }
+        .badge-success { background: var(--success-light); color: var(--success); }
+        .badge-warning { background: var(--warning-light); color: var(--warning); }
+        .badge-error { background: var(--error-light); color: var(--error); }
+        .badge-accent { background: #FFF8E1; color: #D4A012; }
+        
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 10px 16px 20px;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid var(--divider);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            color: var(--text-tertiary);
+            font-size: 10px;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item.active svg {
+            background: rgba(26, 35, 126, 0.1);
+        }
+        
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+            padding: 4px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: var(--divider);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 3px;
+            transition: width 0.5s ease-out;
+        }
+        
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 18px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 500;
+            background: var(--white);
+            border: 1px solid var(--divider);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .chip:hover {
+            border-color: var(--primary);
+        }
+        
+        .chip.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.25);
+        }
+        
+        .fab {
+            position: absolute;
+            bottom: 90px;
+            right: 20px;
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 28px;
+            font-weight: 300;
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.4);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        
+        .fab:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 28px rgba(26, 35, 126, 0.5);
+        }
+        
+        .divider {
+            height: 1px;
+            background: var(--divider);
+            margin: 20px 0;
+        }
+        
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--divider);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .list-item:hover {
+            background: rgba(26, 35, 126, 0.02);
+            margin: 0 -12px;
+            padding: 14px 12px;
+            border-radius: 12px;
+        }
+        
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .tab-bar {
+            display: flex;
+            background: var(--white);
+            border-bottom: 1px solid var(--divider);
+            margin: -20px -20px 20px -20px;
+            padding: 0 8px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 16px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            text-align: center;
+            border-bottom: 2.5px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .welcome-logo {
+            width: 130px;
+            height: 130px;
+            border-radius: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            margin: 48px auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 16px 48px rgba(26, 35, 126, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-logo::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+        }
+        
+        .welcome-logo svg {
+            width: 56px;
+            height: 56px;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .circle-decor {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+        
+        .circle-decor.top {
+            width: 240px;
+            height: 240px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            top: -120px;
+            right: -120px;
+            filter: blur(40px);
+        }
+        
+        .circle-decor.bottom {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            bottom: -90px;
+            left: -90px;
+            filter: blur(40px);
+        }
+        
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: var(--white);
+            border: 1px solid var(--divider);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--primary);
+            background: rgba(26, 35, 126, 0.03);
+        }
+        
+        .checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 18px 0;
+        }
+        
+        .checkbox input {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--primary);
+            margin-top: 2px;
+            cursor: pointer;
+        }
+        
+        .checkbox label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 16px 8px;
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.04) 0%, rgba(57, 73, 171, 0.02) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(26, 35, 126, 0.06);
+        }
+        
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .section-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        .group-card {
+            background: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .group-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow-hover);
+        }
+        
+        .group-image {
+            height: 110px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .group-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+        
+        .group-image svg {
+            width: 48px;
+            height: 48px;
+            color: var(--white);
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .group-info {
+            padding: 16px;
+        }
+        
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--divider);
+        }
+        
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+        
+        .transaction-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: var(--success-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+        
+        .transaction-icon.income { background: var(--success-light); }
+        .transaction-icon.expense { background: var(--error-light); }
+        .transaction-icon.transfer { background: rgba(26, 35, 126, 0.08); }
+        
+        .transaction-details {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .transaction-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .transaction-subtitle {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+        
+        .transaction-amount {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .amount-positive {
+            color: var(--success);
+            font-weight: 700;
+            font-size: 15px;
+        }
+        
+        .amount-negative {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .amount-small {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+        
+        .balance-card {
+            background: linear-gradient(135deg, var(--primary) 0%, #2E4BB4 50%, var(--primary-light) 100%);
+            border-radius: 24px;
+            padding: 28px;
+            color: var(--white);
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(26, 35, 126, 0.35);
+        }
+
+        .balance-card::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+        }
+
+        .balance-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+        }
+        
+        .balance-label {
+            font-size: 13px;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        
+        .balance-amount {
+            font-size: 42px;
+            font-weight: 700;
+            margin: 10px 0;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        
+        .balance-change {
+            font-size: 13px;
+            opacity: 0.85;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        
+        .quick-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .quick-action:hover .quick-action-icon {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 35, 126, 0.25);
+        }
+
+        .quick-action:hover .quick-action-icon svg {
+            stroke: var(--white);
+        }
+        
+        .quick-action-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: var(--white);
+            border: 1px solid var(--divider);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s;
+        }
+        
+        .quick-action-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            transition: all 0.25s;
+        }
+        
+        .quick-action-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--divider);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            padding-left: 4px;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.06) 0%, rgba(26, 35, 126, 0.02) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+        
+        .menu-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+        }
+        
+        .menu-text {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .menu-arrow {
+            color: var(--text-tertiary);
+            font-size: 18px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 32px;
+        }
+        
+        .step {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--divider);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            transition: all 0.3s;
+        }
+        
+        .step.active {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(26, 35, 126, 0.35);
+        }
+        
+        .step.completed {
+            background: var(--success);
+            color: var(--white);
+        }
+        
+        .step-line {
+            width: 50px;
+            height: 3px;
+            background: var(--divider);
+            transition: all 0.3s;
+        }
+        
+        .step-line.active {
+            background: var(--primary);
+        }
+        
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .verification-badge.verified {
+            background: var(--success-light);
+            color: var(--success);
+        }
+        
+        .verification-badge.pending {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chart-container {
+            height: 160px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(26, 35, 126, 0.02) 0%, transparent 100%);
+            border-radius: 16px;
+        }
+
+        .chart-bar {
+            width: 32px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 6px 6px 0 0;
+            transition: all 0.3s;
+        }
+
+        .chart-bar:hover {
+            opacity: 0.8;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--divider);
+            outline: none;
+            -webkit-appearance: none;
+            margin: 20px 0;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.35);
+            border: 3px solid var(--white);
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1.5px solid var(--divider);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .social-btn:hover {
+            border-color: var(--text-tertiary);
+            background: rgba(0,0,0,0.02);
+        }
+
+        .divider-text {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .divider-text::before,
+        .divider-text::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--divider);
+        }
+
+        .divider-text span {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        /* Dot Pattern Background */
+        .dot-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(26, 35, 126, 0.06) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Accent Strip on Cards */
+        .card-accent {
+            position: relative;
+            border-left: 4px solid var(--primary);
+        }
+
+        .card-accent-success {
+            position: relative;
+            border-left: 4px solid var(--success);
+        }
+
+        .card-accent-warning {
+            position: relative;
+            border-left: 4px solid var(--warning);
+        }
+
+        .card-accent-gold {
+            position: relative;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* Large Faded Icon Background */
+        .faded-icon {
+            position: absolute;
+            right: 10px;
+            bottom: 80px;
+            width: 120px;
+            height: 120px;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .faded-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--primary);
+        }
+
+        .faded-icon-top {
+            position: absolute;
+            right: 10px;
+            top: 60px;
+            width: 100px;
+            height: 100px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .faded-icon-top svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="nav">
+        <span class="nav-brand brand-font">ChamaApp</span>
+        
+        <!-- Auth -->
+        <a href="#welcome" onclick="showScreen('welcome')">Welcome</a>
+        <a href="#signin" onclick="showScreen('signin')">Sign In</a>
+        <a href="#signup" onclick="showScreen('signup')">Sign Up</a>
+        
+        <!-- Main -->
+        <a href="#home" onclick="showScreen('home')">Home</a>
+        
+        <!-- Groups -->
+        <a href="#groups" onclick="showScreen('groups')">Groups</a>
+        <a href="#group-details" onclick="showScreen('group-details')">Group Details</a>
+        <a href="#contribution" onclick="showScreen('contribution')">Contribution</a>
+        <a href="#create-group" onclick="showScreen('create-group')">Create Group</a>
+        <a href="#members" onclick="showScreen('members')">Members</a>
+        
+        <!-- Governance (All Members) -->
+        <a href="#voting" onclick="showScreen('voting')">Voting</a>
+        <a href="#create-proposal" onclick="showScreen('create-proposal')">Create Proposal</a>
+        
+        <!-- Loans -->
+        <a href="#loans" onclick="showScreen('loans')">Loans</a>
+        <a href="#loan-apply" onclick="showScreen('loan-apply')">Apply Loan</a>
+        
+        <!-- Wallet -->
+        <a href="#wallet" onclick="showScreen('wallet')">Wallet</a>
+        <a href="#transactions" onclick="showScreen('transactions')">Transactions</a>
+        
+        <!-- Profile -->
+        <a href="#profile" onclick="showScreen('profile')">Profile</a>
+        <a href="#settings" onclick="showScreen('settings')">Settings</a>
+        
+        <!-- Admin -->
+        <a href="#admin" onclick="showScreen('admin')">Admin</a>
+        <a href="#blockchain" onclick="showScreen('blockchain')">Blockchain</a>
+        <a href="#kyc" onclick="showScreen('kyc')">KYC</a>
+        <a href="#analytics" onclick="showScreen('analytics')">Analytics</a>
+        <a href="#notifications" onclick="showScreen('notifications')">Notifications</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- 1. Welcome / Get Started Screen -->
+        <div id="welcome" class="screen active">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Top Right Decoration -->
+                <div style="position:absolute;top:-100px;right:-100px;width:200px;height:200px;border-radius:50%;background:rgba(26,35,126,0.15);"></div>
+                <!-- Bottom Left Decoration -->
+                <div style="position:absolute;bottom:-75px;left:-75px;width:150px;height:150px;border-radius:50%;background:rgba(26,35,126,0.15);"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                
+                <div class="welcome-logo" style="width:120px;height:120px;border-radius:50%;margin-top:60px;position:relative;z-index:1;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:60px;height:60px;">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                
+                <div style="text-align:center;">
+                    <p class="text-secondary mb-xs" style="font-size:18px;letter-spacing:0.1em;">Welcome to</p>
+                    <h1 class="text-h1 text-primary brand-font" style="margin-bottom:12px;">Chama App</h1>
+                    <p class="text-tertiary" style="font-size:14px;">Together We Save, Together We Grow</p>
+                </div>
+                
+                <div style="margin-top:60px;">
+                    <button class="btn btn-primary" style="padding:16px 32px;font-size:16px;">Get Started</button>
+                    
+                    <p style="text-align:center;margin-top:24px;font-size:14px;" class="text-secondary">
+                        Already have an account? <span class="text-primary" style="font-weight:600;">Sign In</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Sign In Screen -->
+        <div id="signin" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Top Right Decoration -->
+                <div style="position:absolute;top:-80px;right:-80px;width:180px;height:180px;border-radius:50%;background:rgba(26,35,126,0.12);"></div>
+                <!-- Bottom Left Decoration -->
+                <div style="position:absolute;bottom:-60px;left:-60px;width:120px;height:120px;border-radius:50%;background:rgba(26,35,126,0.1);"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon-top">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                </div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:20px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h4">Sign In</span>
+                </div>
+                
+                <h1 class="text-h2 gradient-text brand-font mb-xs">Welcome Back</h1>
+                <p class="text-secondary mb-lg" style="position:relative;z-index:1;">Sign in to continue</p>
+                
+                <label class="input-label">Email or Phone</label>
+                <input type="text" class="input-field" placeholder="Enter your email or phone">
+                
+                <label class="input-label">Password</label>
+                <input type="password" class="input-field" placeholder="Enter your password">
+                
+                <div class="flex justify-between items-center mb-lg">
+                    <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;">
+                        <input type="checkbox" style="accent-color:var(--primary);width:18px;height:18px;"> Remember me
+                    </label>
+                    <span class="text-primary" style="font-size:14px;font-weight:600;">Forgot Password?</span>
+                </div>
+                
+                <button class="btn btn-primary mb-lg" style="position:relative;z-index:1;">Sign In</button>
+                
+                <div class="divider-text" style="position:relative;z-index:1;">
+                    <span>OR</span>
+                </div>
+                
+                <div class="flex gap-md mb-lg" style="position:relative;z-index:1;">
+                    <button class="social-btn" style="flex:1;">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                        Google
+                    </button>
+                    <button class="social-btn" style="flex:1;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Apple
+                    </button>
+                </div>
+                
+                <p style="text-align:center;position:relative;z-index:1;" class="text-secondary">
+                    Don't have an account? <span class="text-primary" style="font-weight:600;">Sign Up</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. Sign Up Screen -->
+        <div id="signup" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <!-- Top Right Decoration -->
+                <div style="position:absolute;top:-80px;right:-80px;width:180px;height:180px;border-radius:50%;background:rgba(26,35,126,0.12);"></div>
+                <!-- Bottom Left Decoration -->
+                <div style="position:absolute;bottom:-60px;left:-60px;width:120px;height:120px;border-radius:50%;background:rgba(26,35,126,0.1);"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon-top">
+                    <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6"/></svg>
+                </div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:20px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h4">Sign Up</span>
+                </div>
+                
+                <h1 class="text-h2 gradient-text brand-font mb-xs" style="position:relative;z-index:1;">Create Account</h1>
+                <p class="text-secondary mb-lg" style="position:relative;z-index:1;">Join your chama today</p>
+                
+                <div style="text-align:center;margin-bottom:20px;position:relative;z-index:1;">
+                    <div class="avatar avatar-lg" style="margin:0 auto 8px;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    </div>
+                    <span class="text-primary" style="font-size:13px;font-weight:500;">Add Photo</span>
+                </div>
+                
+                <input type="text" class="input-field" placeholder="Full Name">
+                <input type="email" class="input-field" placeholder="Email">
+                <input type="tel" class="input-field" placeholder="Phone Number">
+                <input type="password" class="input-field" placeholder="Password">
+                <input type="password" class="input-field" placeholder="Confirm Password">
+                
+                <div class="checkbox" style="position:relative;z-index:1;">
+                    <input type="checkbox" id="terms" style="accent-color:var(--primary);">
+                    <label for="terms">I agree to the <span class="text-primary" style="font-weight:600;">Terms of Service</span> and <span class="text-primary" style="font-weight:600;">Privacy Policy</span></label>
+                </div>
+                
+                <button class="btn btn-primary mb-md" style="position:relative;z-index:1;">Create Account</button>
+                
+                <p style="text-align:center;position:relative;z-index:1;" class="text-secondary">
+                    Already have an account? <span class="text-primary" style="font-weight:600;">Sign In</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- 4. Home / Dashboard Screen -->
+        <div id="home" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                
+                <div class="flex justify-between items-center mb-lg" style="margin-top:10px;position:relative;z-index:1;">
+                    <div>
+                        <p class="text-tertiary">Good Morning,</p>
+                        <h2 class="text-h3 text-primary">Wambui Maina</h2>
+                    </div>
+                    <div class="flex gap-sm">
+                        <button class="icon-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        </button>
+                        <div class="avatar avatar-sm">WM</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <p class="text-tertiary">Total Savings</p>
+                    <h1 class="text-h1 text-primary">KSh 125,000</h1>
+                    <p class="text-success text-caption">+12% this month</p>
+                </div>
+                
+                <p class="section-title mb-md">Quick Actions</p>
+                <div class="quick-actions">
+                    <div class="quick-action">
+                        <div class="quick-action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <span class="quick-action-label">Join Group</span>
+                    </div>
+                    <div class="quick-action">
+                        <div class="quick-action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                        </div>
+                        <span class="quick-action-label">Create</span>
+                    </div>
+                    <div class="quick-action">
+                        <div class="quick-action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <span class="quick-action-label">Apply Loan</span>
+                    </div>
+                    <div class="quick-action" onclick="showScreen('voting')">
+                        <div class="quick-action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.12 0 4.07.74 5.62 1.98"/></svg>
+                        </div>
+                        <span class="quick-action-label">Vote</span>
+                    </div>
+                </div>
+                
+                <div class="section-header">
+                    <span class="section-title">My Groups</span>
+                    <span class="section-link">See All</span>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-image">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div class="group-info">
+                        <div class="flex justify-between items-center mb-xs">
+                            <h4 class="text-primary" style="font-weight:600;">Kilimani Savings</h4>
+                            <span class="badge badge-success">Active</span>
+                        </div>
+                        <p class="text-tertiary text-caption mb-sm">15 members • KSh 50,000/month</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:75%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-header" style="margin-top:20px;">
+                    <span class="section-title">Recent Activity</span>
+                    <span class="section-link">See All</span>
+                </div>
+                
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Contribution</p>
+                        <p class="transaction-subtitle">Kilimani Savings</p>
+                    </div>
+                    <div class="transaction-amount">
+                        <p class="amount-positive">+KSh 5,000</p>
+                        <p class="amount-small">Today, 10:30 AM</p>
+                    </div>
+                </div>
+                
+                <div class="bottom-nav">
+                    <div class="nav-item active">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>Groups</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span>Loans</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Groups List Screen -->
+        <div id="groups" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                
+                <div class="flex justify-between items-center mb-md" style="margin-top:10px;position:relative;z-index:1;">
+                    <h2 class="text-h3 text-primary">Groups</h2>
+                    <button class="icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </button>
+                </div>
+                
+                <div class="flex gap-sm mb-lg" style="overflow-x:auto;padding-bottom:8px;">
+                    <span class="chip active">All</span>
+                    <span class="chip">My Groups</span>
+                    <span class="chip">Public</span>
+                    <span class="chip">Private</span>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-image" style="background:linear-gradient(135deg,#3949AB,#1A237E);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="group-info">
+                        <div class="flex justify-between items-center mb-xs">
+                            <h4 class="text-primary" style="font-weight:600;">Kilimani Savings</h4>
+                            <span class="badge badge-success">Active</span>
+                        </div>
+                        <p class="text-tertiary text-caption mb-sm">15 members • KSh 50,000/mo</p>
+                        <div class="flex justify-between text-caption mb-xs">
+                            <span class="text-tertiary">KSh 50,000 / 100,000</span>
+                            <span class="text-primary">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:75%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-image" style="background:linear-gradient(135deg,#FF9800,#F57C00);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="group-info">
+                        <div class="flex justify-between items-center mb-xs">
+                            <h4 class="text-primary" style="font-weight:600;">Westlands Investment</h4>
+                            <span class="badge badge-warning">Pending</span>
+                        </div>
+                        <p class="text-tertiary text-caption mb-sm">8 members • KSh 20,000/mo</p>
+                        <div class="flex justify-between text-caption mb-xs">
+                            <span class="text-tertiary">KSh 10,000 / 50,000</span>
+                            <span class="text-primary">20%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:20%;background:var(--warning);"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fab">+</div>
+                
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>Groups</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span>Loans</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Group Details Screen -->
+        <div id="group-details" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));height:180px;border-radius:16px;margin:-20px -20px 20px -20px;padding:20px;position:relative;">
+                    <div class="flex justify-between">
+                        <button class="icon-btn" style="background:rgba(255,255,255,0.2);border:none;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        </button>
+                        <button class="icon-btn" style="background:rgba(255,255,255,0.2);border:none;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        </button>
+                    </div>
+                    <div style="position:absolute;bottom:20px;left:20px;">
+                        <h1 class="text-h2" style="color:white;">Kilimani Savings</h1>
+                        <p style="color:rgba(255,255,255,0.8);font-size:13px;">15 members • Created Jan 2024</p>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">750K</div>
+                        <div class="stat-label">Savings</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Loans</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Votes</div>
+                    </div>
+                </div>
+                
+                <div class="tab-bar" style="margin:0 -20px 16px -20px;padding:0 20px;">
+                    <span class="tab active">Overview</span>
+                    <span class="tab">Members</span>
+                    <span class="tab">Activity</span>
+                </div>
+                
+                <h4 class="text-primary mb-sm" style="font-weight:600;">About</h4>
+                <p class="text-secondary mb-lg" style="font-size:14px;line-height:1.6;">A savings group focused on helping members achieve their financial goals through monthly contributions and low-interest loans.</p>
+                
+                <div class="card">
+                    <h4 class="text-primary mb-sm" style="font-weight:600;">Next Meeting</h4>
+                    <div class="flex items-center gap-md">
+                        <div style="width:48px;height:48px;background:var(--bg-start);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-primary" style="font-weight:500;">Saturday, March 15</p>
+                            <p class="text-tertiary text-caption">2:00 PM • Kilimani Community Center</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary mb-md" onclick="showScreen('contribution')">Make Contribution</button>
+                
+                <button class="btn btn-outline mb-md">Join Meeting</button>
+                
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>Groups</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span>Loans</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Create/Join Group Screen -->
+        <div id="create-group" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:10px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h3">Create Group</span>
+                </div>
+                
+                <div class="step-indicator">
+                    <div class="step active">1</div>
+                    <div class="step-line active"></div>
+                    <div class="step">2</div>
+                    <div class="step-line"></div>
+                    <div class="step">3</div>
+                </div>
+                
+                <h2 class="text-h3 text-primary mb-lg" style="text-align:center;">Group Details</h2>
+                
+                <input type="text" class="input-field" placeholder="Group Name">
+                <textarea class="input-field" placeholder="Group Description" rows="3" style="resize:none;"></textarea>
+                
+                <label class="input-label">Category</label>
+                <select class="input-field">
+                    <option>Select category</option>
+                    <option>Savings</option>
+                    <option>Investment</option>
+                    <option>Business</option>
+                </select>
+                
+                <label class="input-label" style="margin-top:16px;">Privacy</label>
+                <div class="flex gap-md mb-lg">
+                    <label style="flex:1;display:flex;align-items:center;justify-content:center;padding:14px;border:1px solid var(--primary);border-radius:12px;background:var(--primary);color:white;font-size:14px;">
+                        <input type="radio" name="privacy" checked style="margin-right:8px;">Public
+                    </label>
+                    <label style="flex:1;display:flex;align-items:center;justify-content:center;padding:14px;border:1px solid var(--divider);border-radius:12px;font-size:14px;">
+                        <input type="radio" name="privacy" style="margin-right:8px;">Private
+                    </label>
+                </div>
+                
+                <div class="flex gap-md">
+                    <button class="btn btn-outline" style="flex:1;">Back</button>
+                    <button class="btn btn-primary" style="flex:1;">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Members List Screen -->
+        <div id="members" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <h2 class="text-h3 text-primary mb-md" style="margin-top:10px;position:relative;z-index:1;">Members</h2>
+                
+                <input type="text" class="input-field" placeholder="Search members...">
+                
+                <div class="flex gap-sm mb-lg">
+                    <span class="chip active">All</span>
+                    <span class="chip">Admins</span>
+                    <span class="chip">Treasurers</span>
+                    <span class="chip">Members</span>
+                </div>
+                
+                <div class="list-item">
+                    <div class="avatar" style="margin-right:12px;">WM</div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Wambui Maina <span class="badge badge-accent" style="margin-left:6px;">Admin</span></p>
+                        <p class="transaction-subtitle">+254 712 345 678</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <p class="text-primary" style="font-weight:600;">KSh 5,000</p>
+                        <p class="text-tertiary text-caption">/month</p>
+                    </div>
+                </div>
+                
+                <div class="list-item">
+                    <div class="avatar" style="margin-right:12px;background:linear-gradient(135deg,#4CAF50,#388E3C);">SM</div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Sarah Mugo <span class="badge badge-primary" style="margin-left:6px;">Treasurer</span></p>
+                        <p class="transaction-subtitle">+254 723 456 789</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <p class="text-primary" style="font-weight:600;">KSh 5,000</p>
+                        <p class="text-tertiary text-caption">/month</p>
+                    </div>
+                </div>
+                
+                <div class="list-item">
+                    <div class="avatar" style="margin-right:12px;background:linear-gradient(135deg,#FF9800,#F57C00);">PK</div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Peter Kariuki</p>
+                        <p class="transaction-subtitle">+254 734 567 890</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <p class="text-primary" style="font-weight:600;">KSh 3,000</p>
+                        <p class="text-tertiary text-caption">/month</p>
+                    </div>
+                </div>
+                
+                <div class="fab">+</div>
+                
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>Groups</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span>Loans</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Member Details Screen -->
+        <div id="member-details" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-md" style="margin-top:10px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h3">Member Details</span>
+                </div>
+                
+                <div style="text-align:center;margin-bottom:24px;">
+                    <div class="avatar avatar-lg" style="margin:0 auto 12px;">WM</div>
+                    <h2 class="text-h3 text-primary">Wambui Maina</h2>
+                    <p class="text-secondary">+254 712 345 678</p>
+                    <span class="badge badge-accent" style="margin-top:8px;">Admin</span>
+                    <p class="text-tertiary text-caption" style="margin-top:8px;">Member since January 2024</p>
+                </div>
+                
+                <div class="stats-grid" style="grid-template-columns:repeat(2,1fr);">
+                    <div class="stat-item">
+                        <div class="stat-value">KSh 60K</div>
+                        <div class="stat-label">Total Contributed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">KSh 30K</div>
+                        <div class="stat-label">Total Borrowed</div>
+                    </div>
+                </div>
+                
+                <h4 class="text-primary mb-sm" style="font-weight:600;">Contributions</h4>
+                <div class="card">
+                    <div class="transaction-item" style="border:none;padding:8px 0;">
+                        <div class="transaction-details">
+                            <p class="transaction-title">Monthly Contribution</p>
+                            <p class="transaction-subtitle">March 2024</p>
+                        </div>
+                        <p class="amount-positive">+KSh 5,000</p>
+                    </div>
+                    <div class="transaction-item" style="border:none;padding:8px 0;">
+                        <div class="transaction-details">
+                            <p class="transaction-title">Monthly Contribution</p>
+                            <p class="transaction-subtitle">February 2024</p>
+                        </div>
+                        <p class="amount-positive">+KSh 5,000</p>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline mb-md">Send Message</button>
+                <button class="btn btn-outline" style="border-color:var(--error);color:var(--error);">Remove Member</button>
+            </div>
+        </div>
+
+        <!-- 10. Loans Screen -->
+        <div id="loans" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                
+                <h2 class="text-h3 text-primary mb-md" style="margin-top:10px;position:relative;z-index:1;">Loans</h2>
+                
+                <div class="card card-accent-success" style="background:#E8F5E9;border:none;">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-success" style="font-weight:600;">You qualify for</p>
+                            <h2 class="text-h2 text-primary">KSh 50,000</h2>
+                        </div>
+                        <button class="btn btn-primary" style="width:auto;padding:12px 24px;">Apply Now</button>
+                    </div>
+                </div>
+                
+                <div class="tab-bar" style="margin:0 -20px 16px -20px;padding:0 20px;">
+                    <span class="tab active">Available</span>
+                    <span class="tab">My Loans</span>
+                    <span class="tab">History</span>
+                </div>
+                
+                <div class="card">
+                    <div class="flex justify-between items-center mb-sm">
+                        <h4 class="text-primary" style="font-weight:600;">Quick Loan</h4>
+                        <span class="badge badge-success">10% APR</span>
+                    </div>
+                    <p class="text-tertiary text-caption mb-md">KSh 10,000 - KSh 100,000 • 1-6 months</p>
+                    <button class="btn btn-outline">Apply</button>
+                </div>
+                
+                <div class="card">
+                    <div class="flex justify-between items-center mb-sm">
+                        <h4 class="text-primary" style="font-weight:600;">Emergency Loan</h4>
+                        <span class="badge badge-warning">15% APR</span>
+                    </div>
+                    <p class="text-tertiary text-caption mb-md">KSh 5,000 - KSh 50,000 • 1-3 months</p>
+                    <button class="btn btn-outline">Apply</button>
+                </div>
+                
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        <span>Groups</span>
+                    </div>
+                    <div class="nav-item active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span>Loans</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11. Loan Application Screen -->
+        <div id="loan-apply" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:10px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h3">Apply for Loan</span>
+                </div>
+                
+                <h3 class="text-primary mb-sm" style="font-weight:600;">Loan Amount</h3>
+                <div style="text-align:center;padding:24px;background:var(--bg-start);border-radius:12px;margin-bottom:20px;">
+                    <h1 class="text-h1 text-primary">KSh 50,000</h1>
+                    <p class="text-tertiary">KSh 10,000 - KSh 100,000</p>
+                </div>
+                
+                <input type="range" style="width:100%;margin-bottom:20px;accent-color:var(--primary);">
+                
+                <label class="input-label">Duration</label>
+                <select class="input-field">
+                    <option>Select duration</option>
+                    <option>1 month</option>
+                    <option>2 months</option>
+                    <option>3 months</option>
+                    <option>6 months</option>
+                </select>
+                
+                <label class="input-label">Purpose</label>
+                <select class="input-field">
+                    <option>Select purpose</option>
+                    <option>Business</option>
+                    <option>Emergency</option>
+                    <option>Education</option>
+                    <option>Home improvement</option>
+                </select>
+                
+                <div class="card" style="background:var(--bg-start);border:none;margin-bottom:20px;">
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-secondary">Loan Amount</span>
+                        <span class="text-primary" style="font-weight:600;">KSh 50,000</span>
+                    </div>
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-secondary">Interest (10%)</span>
+                        <span class="text-primary" style="font-weight:600;">KSh 5,000</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="flex justify-between">
+                        <span class="text-primary" style="font-weight:600;">Total to Repay</span>
+                        <span class="text-primary" style="font-weight:700;">KSh 55,000</span>
+                    </div>
+                    <p class="text-tertiary text-caption" style="margin-top:8px;">KSh 18,333/month for 3 months</p>
+                </div>
+                
+                <div class="checkbox">
+                    <input type="checkbox" id="loan-terms">
+                    <label for="loan-terms">I agree to the <span class="text-primary">Loan Terms and Conditions</span></label>
+                </div>
+                
+                <button class="btn btn-primary">Submit Application</button>
+            </div>
+        </div>
+
+        <!-- 12. Wallet Screen -->
+        <div id="wallet" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex justify-between items-center mb-md" style="margin-top:10px;position:relative;z-index:1;">
+                    <h2 class="text-h3 text-primary">Wallet</h2>
+                    <button class="icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    </button>
+                </div>
+                
+                <div class="balance-card">
+                    <p class="balance-label">Available Balance</p>
+                    <h1 class="balance-amount">KSh 45,000</h1>
+                    <p class="balance-change">KSh 5,000 pending</p>
+                </div>
+                
+                <div class="flex gap-md mb-lg">
+                    <button class="btn btn-primary" style="flex:1;background:white;color:var(--primary);">Deposit</button>
+                    <button class="btn btn-primary" style="flex:1;">Withdraw</button>
+                </div>
+                
+                <p class="section-title mb-md">Payment Methods</p>
+                <div class="card" style="padding:12px;">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-md">
+                            <div style="width:40px;height:40px;background:#FF9800;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-primary" style="font-weight:500;">M-Pesa</p>
+                                <p class="text-tertiary text-caption">Default</p>
+                            </div>
+                        </div>
+                            <span class="badge badge-success">Active</span>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding:12px;">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-md">
+                            <div style="width:40px;height:40px;background:#003087;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 10h18v4H3z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-primary" style="font-weight:500;">Bank Transfer</p>
+                                <p class="text-tertiary text-caption">****4567</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="section-title mb-md" style="margin-top:16px;">Recent Transactions</p>
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Deposit</p>
+                        <p class="transaction-subtitle">M-Pesa</p>
+                    </div>
+                    <div class="transaction-amount">
+                        <p class="amount-positive">+KSh 10,000</p>
+                        <p class="amount-small">Mar 10</p>
+                    </div>
+                </div>
+                
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        <span>Groups</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span>Loans</span>
+                    </div>
+                    <div class="nav-item active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. Transactions History Screen -->
+        <div id="transactions" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-md" style="margin-top:10px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h3">Transactions</span>
+                </div>
+                
+                <div class="flex gap-sm mb-lg">
+                    <span class="chip active">All</span>
+                    <span class="chip">In</span>
+                    <span class="chip">Out</span>
+                </div>
+                
+                <div class="card" style="display:flex;gap:12px;padding:16px;">
+                    <div style="flex:1;text-align:center;padding:12px;background:var(--bg-start);border-radius:8px;">
+                        <p class="text-tertiary text-caption">Total In</p>
+                        <p class="text-success" style="font-weight:700;">KSh 45,000</p>
+                    </div>
+                    <div style="flex:1;text-align:center;padding:12px;background:var(--bg-start);border-radius:8px;">
+                        <p class="text-tertiary text-caption">Total Out</p>
+                        <p class="text-primary" style="font-weight:700;">KSh 20,000</p>
+                    </div>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-sm">Today</p>
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Deposit</p>
+                        <p class="transaction-subtitle">M-Pesa</p>
+                    </div>
+                    <div class="transaction-amount">
+                        <p class="amount-positive">+KSh 10,000</p>
+                        <p class="amount-small">10:30 AM</p>
+                    </div>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-sm">Yesterday</p>
+                <div class="transaction-item">
+                    <div class="transaction-icon" style="background:#FFEBEE;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Loan Repayment</p>
+                        <p class="transaction-subtitle">Kilimani Savings</p>
+                    </div>
+                    <div class="transaction-amount">
+                        <p class="amount-negative">-KSh 5,000</p>
+                        <p class="amount-small">2:15 PM</p>
+                    </div>
+                </div>
+                
+                <div class="transaction-item">
+                    <div class="transaction-icon" style="background:#E3F2FD;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="transaction-details">
+                        <p class="transaction-title">Group Contribution</p>
+                        <p class="transaction-subtitle">Kilimani Savings</p>
+                    </div>
+                    <div class="transaction-amount">
+                        <p class="amount-negative">-KSh 5,000</p>
+                        <p class="amount-small">9:00 AM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14. Profile Screen -->
+        <div id="profile" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon-top">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                </div>
+                
+                <div style="text-align:center;padding:24px 0;position:relative;z-index:1;">
+                    <div class="avatar avatar-lg" style="margin:0 auto 12px;position:relative;">
+                        WM
+                        <div style="position:absolute;bottom:0;right:0;width:24px;height:24px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid white;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        </div>
+                    </div>
+                    <h2 class="text-h3 text-primary">Wambui Maina</h2>
+                    <p class="text-secondary">+254 712 345 678</p>
+                    <p class="text-secondary">wambuimaina@email.com</p>
+                </div>
+                
+                <div class="verification-badge verified" style="margin:0 auto 20px;width:fit-content;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    KYC Verified
+                </div>
+                
+                <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px;">
+                    <div style="text-align:center;">
+                        <p class="text-h3 text-primary">5</p>
+                        <p class="text-tertiary text-caption">Groups</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <p class="text-h3 text-primary">125K</p>
+                        <p class="text-tertiary text-caption">Saved</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <p class="text-h3 text-primary">3</p>
+                        <p class="text-tertiary text-caption">Loans</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                    <span class="menu-text">My Groups</span>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                    <span class="menu-text">My Loans</span>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+                    <span class="menu-text">Payment Methods</span>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+                    <span class="menu-text">Notifications</span>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                    <span class="menu-text">Security</span>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                    <span class="menu-text">Help & Support</span>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+                    <span class="menu-text">About</span>
+                    <span class="menu-arrow">›</span>
+                </div>
+                
+                <button class="btn btn-outline" style="margin-top:16px;border-color:var(--error);color:var(--error);">Log Out</button>
+                
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        <span>Groups</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span>Loans</span>
+                    </div>
+                    <div class="nav-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15. Settings Screen -->
+        <div id="settings" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:10px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h3">Settings</span>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-sm">Account</p>
+                <div class="menu-item" style="border-bottom:none;">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+                    <span class="menu-text">Edit Profile</span>
+                </div>
+                <div class="menu-item" style="border-bottom:none;">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                    <span class="menu-text">Change Password</span>
+                </div>
+                <div class="menu-item" style="border-bottom:none;">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></div>
+                    <span class="menu-text">Change PIN</span>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-sm" style="margin-top:20px;">Preferences</p>
+                <div class="menu-item" style="border-bottom:none;">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                    <span class="menu-text">Language</span>
+                    <span class="text-tertiary">English ›</span>
+                </div>
+                <div class="menu-item" style="border-bottom:none;">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                    <span class="menu-text">Currency</span>
+                    <span class="text-tertiary">KES ›</span>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-sm" style="margin-top:20px;">Notifications</p>
+                <div class="menu-item" style="border-bottom:none;">
+                    <span class="menu-text">Push Notifications</span>
+                    <div style="width:44px;height:24px;background:var(--primary);border-radius:12px;position:relative;">
+                        <div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div>
+                    </div>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-sm" style="margin-top:20px;">Support</p>
+                <div class="menu-item" style="border-bottom:none;">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                    <span class="menu-text">FAQ</span>
+                </div>
+                <div class="menu-item" style="border-bottom:none;">
+                    <div class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <span class="menu-text">Contact Us</span>
+                </div>
+                
+                <p class="text-tertiary text-caption" style="margin-top:24px;text-align:center;">Version 1.0.0</p>
+            </div>
+        </div>
+
+        <!-- 16. Admin Dashboard Screen -->
+        <div id="admin" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                
+                <div class="flex justify-between items-center mb-lg" style="margin-top:10px;position:relative;z-index:1;">
+                    <h2 class="text-h3 text-primary">Admin Dashboard</h2>
+                    <button class="icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </button>
+                </div>
+                
+                <div class="stats-grid" style="grid-template-columns:repeat(2,1fr);">
+                    <div class="card" style="padding:16px;">
+                        <p class="text-tertiary text-caption">Total Members</p>
+                        <h2 class="text-h2 text-primary">156</h2>
+                    </div>
+                    <div class="card" style="padding:16px;">
+                        <p class="text-tertiary text-caption">Total Savings</p>
+                        <h2 class="text-h2 text-primary">KSh 2.5M</h2>
+                    </div>
+                    <div class="card" style="padding:16px;">
+                        <p class="text-tertiary text-caption">Active Loans</p>
+                        <h2 class="text-h2 text-primary">23</h2>
+                    </div>
+                    <div class="card" style="padding:16px;">
+                        <p class="text-tertiary text-caption">Pending Requests</p>
+                        <h2 class="text-h2 text-warning">8</h2>
+                    </div>
+                </div>
+                
+                <p class="section-title mb-sm">Pending Requests</p>
+                <div class="card card-accent-warning" style="padding:12px;">
+                    <div class="flex items-center gap-md">
+                        <div class="avatar avatar-sm">SK</div>
+                        <div style="flex:1;">
+                            <p class="text-primary" style="font-weight:500;">Sarah K.</p>
+                            <p class="text-tertiary text-caption">Join Request • Kilimani Savings</p>
+                        </div>
+                        <button class="btn btn-primary" style="width:auto;padding:8px 16px;font-size:12px;">Approve</button>
+                    </div>
+                </div>
+                
+                <div class="card card-accent-warning" style="padding:12px;">
+                    <div class="flex items-center gap-md">
+                        <div class="avatar avatar-sm" style="background:linear-gradient(135deg,#FF9800,#F57C00);">JM</div>
+                        <div style="flex:1;">
+                            <p class="text-primary" style="font-weight:500;">James M.</p>
+                            <p class="text-tertiary text-caption">Loan Request • KSh 30,000</p>
+                        </div>
+                        <button class="btn btn-primary" style="width:auto;padding:8px 16px;font-size:12px;">Review</button>
+                    </div>
+                </div>
+                
+                <p class="section-title mb-sm" style="margin-top:16px;">Quick Actions</p>
+                <div class="flex gap-md">
+                    <button class="btn btn-outline" style="flex:1;font-size:13px;">Approve Member</button>
+                    <button class="btn btn-outline" style="flex:1;font-size:13px;">Review Loan</button>
+                </div>
+                
+                <p class="section-title mb-sm" style="margin-top:20px;">Admin Tools</p>
+                <div class="flex gap-md">
+                    <button class="btn btn-secondary" style="flex:1;font-size:12px;padding:12px;" onclick="showScreen('voting')">
+                        <svg width="16" height="16" viewBox=/home/jon/dev/experiments/chamaa.api/apps/android/ChamaApp/designs"0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.12 0 4.07.74 5.62 1.98"/></svg>
+                        Voting
+                    </button>
+                    <button class="btn btn-secondary" style="flex:1;font-size:12px;padding:12px;" onclick="showScreen('blockchain')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        Blockchain
+                    </button>
+                </div>
+                <div class="flex gap-md" style="margin-top:8px;">
+                    <button class="btn btn-secondary" style="flex:1;font-size:12px;padding:12px;" onclick="showScreen('analytics')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        Analytics
+                    </button>
+                    <button class="btn btn-secondary" style="flex:1;font-size:12px;padding:12px;" onclick="showScreen('settings')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17. Voting / Governance Screen -->
+        <div id="voting" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                <!-- Large Faded Icon -->
+                <div class="faded-icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.12 0 4.07.74 5.62 1.98"/></svg>
+                </div>
+                
+                <h2 class="text-h3 text-primary mb-md" style="margin-top:10px;position:relative;z-index:1;">Governance</h2>
+                
+                <!-- Tabs -->
+                <div class="tab-bar" style="margin-bottom:16px;padding:0;">
+                    <span class="tab active">Active</span>
+                    <span class="tab">My Votes</span>
+                    <span class="tab">History</span>
+                </div>
+                
+                <p class="section-title mb-sm">Active Proposals</p>
+                <div class="card">
+                    <div class="flex justify-between items-center mb-sm">
+                        <span class="badge badge-warning">Voting</span>
+                        <span class="text-tertiary text-caption">2 days left</span>
+                    </div>
+                    <h4 class="text-primary mb-sm" style="font-weight:600;">Increase Monthly Contribution</h4>
+                    <p class="text-secondary text-caption mb-md">Proposal to increase monthly contribution from KSh 5,000 to KSh 7,000</p>
+                    
+                    <div class="progress-bar mb-sm">
+                        <div class="progress-fill" style="width:65%;"></div>
+                    </div>
+                    <p class="text-tertiary text-caption mb-md">65% • 10/15 votes</p>
+                    
+                    <div class="flex gap-sm">
+                        <button class="btn btn-primary" style="flex:1;font-size:13px;padding:12px;">For</button>
+                        <button class="btn btn-outline" style="flex:1;font-size:13px;padding:12px;">Against</button>
+                        <button class="btn btn-outline" style="flex:1;font-size:13px;padding:12px;">Abstain</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex justify-between items-center mb-sm">
+                        <span class="badge badge-warning">Voting</span>
+                        <span class="text-tertiary text-caption">5 days left</span>
+                    </div>
+                    <h4 class="text-primary mb-sm" style="font-weight:600;">Emergency Loan Fund</h4>
+                    <p class="text-secondary text-caption mb-md">Create an emergency loan fund of KSh 100,000 for members facing unexpected expenses</p>
+                    
+                    <div class="progress-bar mb-sm">
+                        <div class="progress-fill" style="width:40%;"></div>
+                    </div>
+                    <p class="text-tertiary text-caption mb-md">40% • 6/15 votes</p>
+                    
+                    <div class="flex gap-sm">
+                        <button class="btn btn-primary" style="flex:1;font-size:13px;padding:12px;">For</button>
+                        <button class="btn btn-outline" style="flex:1;font-size:13px;padding:12px;">Against</button>
+                        <button class="btn btn-outline" style="flex:1;font-size:13px;padding:12px;">Abstain</button>
+                    </div>
+                </div>
+                
+                <p class="section-title mb-sm" style="margin-top:20px;">Passed Proposals</p>
+                <div class="card">
+                    <div class="flex justify-between items-center mb-sm">
+                        <span class="badge badge-success">Passed</span>
+                    </div>
+                    <h4 class="text-primary mb-sm" style="font-weight:600;">New Member Admission</h4>
+                    <p class="text-secondary text-caption">Admit 3 new members to the group</p>
+                    <p class="text-tertiary text-caption" style="margin-top:8px;">80% • 12/15 votes</p>
+                </div>
+                
+                <div class="card card-accent-gold" style="background:var(--bg-start);border:none;">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-tertiary text-caption">Your Voting Power</p>
+                            <h3 class="text-h3 text-primary">150 VOTE</h3>
+                        </div>
+                        <div class="avatar" style="background:var(--accent);color:var(--primary);">WM</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="showScreen('create-proposal')">Create New Proposal</button>
+            </div>
+        </div>
+
+        <!-- Create Proposal Screen -->
+        <div id="create-proposal" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:20px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;" onclick="showScreen('voting')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h4">Create Proposal</span>
+                </div>
+                
+                <h2 class="text-h2 gradient-text brand-font mb-xs" style="position:relative;z-index:1;">New Proposal</h2>
+                <p class="text-secondary mb-lg" style="position:relative;z-index:1;">Create a new governance proposal</p>
+                
+                <div class="card" style="position:relative;z-index:1;">
+                    <label class="input-label">Proposal Title</label>
+                    <input type="text" class="input-field" placeholder="Enter proposal title">
+                    
+                    <label class="input-label">Description</label>
+                    <textarea class="input-field" placeholder="Describe your proposal in detail..." rows="4" style="resize:none;"></textarea>
+                    
+                    <label class="input-label">Proposal Type</label>
+                    <select class="input-field">
+                        <option>Select type</option>
+                        <option>Contribution Change</option>
+                        <option>Member Admission</option>
+                        <option>Loan Approval</option>
+                        <option>Group Rules</option>
+                        <option>Other</option>
+                    </select>
+                    
+                    <label class="input-label">Voting Duration</label>
+                    <select class="input-field">
+                        <option>Select duration</option>
+                        <option>24 hours</option>
+                        <option>48 hours</option>
+                        <option>72 hours</option>
+                        <option>1 week</option>
+                    </select>
+                    
+                    <label class="input-label">Minimum Quorum</label>
+                    <input type="number" class="input-field" placeholder="Minimum votes required" value="10">
+                </div>
+                
+                <div class="card" style="position:relative;z-index:1;background:var(--bg-start);border:none;">
+                    <p class="text-primary mb-sm" style="font-weight:600;">Proposal Summary</p>
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-secondary">Title</span>
+                        <span class="text-primary" style="font-weight:500;">-</span>
+                    </div>
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-secondary">Type</span>
+                        <span class="text-primary" style="font-weight:500;">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-secondary">Duration</span>
+                        <span class="text-primary" style="font-weight:500;">-</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary mb-md" style="position:relative;z-index:1;">Submit Proposal</button>
+                <button class="btn btn-outline" style="position:relative;z-index:1;" onclick="showScreen('voting')">Cancel</button>
+            </div>
+        </div>
+
+        <!-- 18. Blockchain Transactions Screen -->
+        <div id="blockchain" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <h2 class="text-h3 text-primary mb-md" style="margin-top:10px;position:relative;z-index:1;">Blockchain</h2>
+                
+                <div class="card" style="background:linear-gradient(135deg,#1A237E,#3949AB);border:none;color:white;">
+                    <div class="flex items-center justify-between mb-sm">
+                        <span style="background:rgba(255,255,255,0.2);padding:4px 10px;border-radius:12px;font-size:11px;">Connected</span>
+                        <span style="font-size:12px;opacity:0.8;">Polygon Testnet</span>
+                    </div>
+                    <p class="text-tertiary text-caption" style="opacity:0.7;">Wallet Address</p>
+                    <p style="font-size:13px;font-family:monospace;">0x7a2...f9c4</p>
+                </div>
+                
+                <p class="section-title mb-sm">Transactions</p>
+                <div class="card" style="padding:12px;">
+                    <div class="flex items-center justify-between mb-sm">
+                        <div class="flex items-center gap-sm">
+                            <div style="width:32px;height:32px;background:#E8F5E9;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-primary" style="font-weight:500;font-size:14px;">Deposit</p>
+                                <p class="text-tertiary text-caption">Mar 10, 2024</p>
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <p class="text-primary" style="font-weight:600;">+0.05 MATIC</p>
+                            <span class="badge badge-success">Confirmed</span>
+                        </div>
+                    </div>
+                    <p class="text-tertiary text-caption" style="font-family:monospace;font-size:11px;">Tx: 0x3f2...8a1</p>
+                </div>
+                
+                <div class="card" style="padding:12px;">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-sm">
+                            <div style="width:32px;height:32px;background:#FFF3E0;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-primary" style="font-weight:500;font-size:14px;">Loan Disbursement</p>
+                                <p class="text-tertiary text-caption">Mar 5, 2024</p>
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <p class="text-primary" style="font-weight:600;">+50 USDC</p>
+                            <span class="badge badge-success">Confirmed</span>
+                        </div>
+                    </div>
+                    <p class="text-tertiary text-caption" style="font-family:monospace;font-size:11px;">Tx: 0x9c1...d47</p>
+                </div>
+                
+                <button class="btn btn-outline" style="margin-top:16px;">View on Explorer</button>
+            </div>
+        </div>
+
+        <!-- 19. KYC Verification Screen -->
+        <div id="kyc" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:10px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h3">KYC Verification</span>
+                </div>
+                
+                <div class="verification-badge verified" style="margin:0 auto 24px;width:fit-content;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Verified
+                </div>
+                
+                <div class="step-indicator" style="margin-bottom:24px;">
+                    <div class="step completed">1</div>
+                    <div class="step-line active"></div>
+                    <div class="step completed">2</div>
+                    <div class="step-line active"></div>
+                    <div class="step completed">3</div>
+                </div>
+                
+                <div class="card card-accent-success" style="background:#E8F5E9;border:none;">
+                    <div class="flex items-center gap-md">
+                        <div style="width:48px;height:48px;background:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-primary" style="font-weight:600;">Verification Complete</h4>
+                            <p class="text-tertiary text-caption">Your identity has been verified</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="section-title mb-sm" style="margin-top:20px;">Verified Information</p>
+                <div class="card">
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-tertiary">ID Type</span>
+                        <span class="text-primary" style="font-weight:500;">National ID</span>
+                    </div>
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-tertiary">ID Number</span>
+                        <span class="text-primary" style="font-weight:500;">12345678</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-tertiary">Verified On</span>
+                        <span class="text-primary" style="font-weight:500;">March 1, 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20. Analytics Dashboard Screen -->
+        <div id="analytics" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex justify-between items-center mb-lg" style="margin-top:10px;position:relative;z-index:1;">
+                    <h2 class="text-h3 text-primary">Analytics</h2>
+                    <button class="btn btn-outline" style="width:auto;padding:8px 16px;font-size:12px;">Export</button>
+                </div>
+                
+                <div class="flex gap-sm mb-lg">
+                    <span class="chip active">Week</span>
+                    <span class="chip">Month</span>
+                    <span class="chip">Year</span>
+                </div>
+                
+                <div class="stats-grid" style="grid-template-columns:repeat(2,1fr);">
+                    <div class="card" style="padding:16px;">
+                        <p class="text-tertiary text-caption">Total Revenue</p>
+                        <h2 class="text-h2 text-primary">KSh 450K</h2>
+                        <p class="text-success text-caption">+15%</p>
+                    </div>
+                    <div class="card" style="padding:16px;">
+                        <p class="text-tertiary text-caption">Active Users</p>
+                        <h2 class="text-h2 text-primary">156</h2>
+                        <p class="text-success text-caption">+8%</p>
+                    </div>
+                </div>
+                
+                <p class="section-title mb-sm">Savings Over Time</p>
+                <div class="card" style="height:180px;display:flex;align-items:flex-end;justify-content:space-around;padding:20px;">
+                    <div style="width:30px;height:60px;background:var(--primary);border-radius:4px;"></div>
+                    <div style="width:30px;height:80px;background:var(--primary);border-radius:4px;"></div>
+                    <div style="width:30px;height:100px;background:var(--primary);border-radius:4px;"></div>
+                    <div style="width:30px;height:70px;background:var(--primary);border-radius:4px;"></div>
+                    <div style="width:30px;height:120px;background:var(--primary);border-radius:4px;"></div>
+                    <div style="width:30px;height:90px;background:var(--primary);border-radius:4px;"></div>
+                    <div style="width:30px;height:140px;background:var(--primary);border-radius:4px;"></div>
+                </div>
+                
+                <p class="section-title mb-sm" style="margin-top:16px;">Top Groups</p>
+                <div class="card">
+                    <div class="flex justify-between items-center" style="padding:8px 0;border-bottom:1px solid var(--divider);">
+                        <span class="text-primary" style="font-weight:500;">1. Kilimani Savings</span>
+                        <span class="text-success">KSh 750K</span>
+                    </div>
+                    <div class="flex justify-between items-center" style="padding:8px 0;border-bottom:1px solid var(--divider);">
+                        <span class="text-primary" style="font-weight:500;">2. Westlands Investment</span>
+                        <span class="text-primary">KSh 520K</span>
+                    </div>
+                    <div class="flex justify-between items-center" style="padding:8px 0;">
+                        <span class="text-primary" style="font-weight:500;">3. Mombasa Business</span>
+                        <span class="text-primary">KSh 380K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 21. Contribution / Payment Screen -->
+        <div id="contribution" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex items-center mb-lg" style="margin-top:20px;position:relative;z-index:1;">
+                    <button class="icon-btn" style="margin-right:12px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span class="text-h4">Make Contribution</span>
+                </div>
+                
+                <h2 class="text-h2 gradient-text brand-font mb-xs" style="position:relative;z-index:1;">Kilimani Savings</h2>
+                <p class="text-secondary mb-lg" style="position:relative;z-index:1;">March 2024 Contribution</p>
+                
+                <div class="card" style="position:relative;z-index:1;">
+                    <label class="input-label">Amount (KSh)</label>
+                    <input type="number" class="input-field" placeholder="Enter amount" value="5000">
+                    
+                    <label class="input-label">Payment Method</label>
+                    <div class="flex gap-md mb-lg">
+                        <div style="flex:1;padding:14px;border:2px solid var(--primary);border-radius:12px;background:rgba(26,35,126,0.05);text-align:center;">
+                            <div style="width:32px;height:32px;background:#FF9800;border-radius:8px;margin:0 auto 8px;"></div>
+                            <span class="text-primary" style="font-weight:600;font-size:12px;">M-Pesa</span>
+                        </div>
+                        <div style="flex:1;padding:14px;border:1px solid var(--divider);border-radius:12px;text-align:center;">
+                            <div style="width:32px;height:32px;background:#003087;border-radius:8px;margin:0 auto 8px;"></div>
+                            <span class="text-secondary" style="font-size:12px;">Bank</span>
+                        </div>
+                        <div style="flex:1;padding:14px;border:1px solid var(--divider);border-radius:12px;text-align:center;">
+                            <div style="width:32px;height:32px;background:#003087;border-radius:8px;margin:0 auto 8px;"></div>
+                            <span class="text-secondary" style="font-size:12px;">Card</span>
+                        </div>
+                    </div>
+                    
+                    <label class="input-label">Phone Number</label>
+                    <input type="tel" class="input-field" placeholder="254 XXX XXX XXX" value="254 712 345 678">
+                </div>
+                
+                <div class="card" style="position:relative;z-index:1;">
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-secondary">Contribution Amount</span>
+                        <span class="text-primary" style="font-weight:600;">KSh 5,000</span>
+                    </div>
+                    <div class="flex justify-between mb-sm">
+                        <span class="text-secondary">Processing Fee</span>
+                        <span class="text-primary" style="font-weight:600;">KSh 0</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="flex justify-between">
+                        <span class="text-primary" style="font-weight:700;">Total</span>
+                        <span class="text-primary" style="font-weight:700;">KSh 5,000</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary mb-md" style="position:relative;z-index:1;">Pay with M-Pesa</button>
+                
+                <p class="text-tertiary text-caption" style="text-align:center;position:relative;z-index:1;">You will receive an STK push on your phone</p>
+            </div>
+        </div>
+
+        <!-- 22. Notifications Screen -->
+        <div id="notifications" class="screen">
+            <div class="phone-frame" style="position:relative;overflow:hidden;background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 50%, #F5F5F5 100%);">
+                <div class="dot-pattern"></div>
+                
+                <div class="flex justify-between items-center mb-lg" style="margin-top:20px;position:relative;z-index:1;">
+                    <span class="text-h4">Notifications</span>
+                    <span class="text-primary" style="font-size:13px;font-weight:600;">Mark all read</span>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-md" style="position:relative;z-index:1;">Today</p>
+                
+                <div class="card" style="position:relative;z-index:1;padding:14px;">
+                    <div class="flex gap-md">
+                        <div style="width:44px;height:44px;border-radius:12px;background:var(--success-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div style="flex:1;">
+                            <p class="text-primary" style="font-weight:600;font-size:14px;">Contribution Received</p>
+                            <p class="text-secondary text-body-sm">Sarah Mugo contributed KSh 5,000</p>
+                            <p class="text-tertiary text-caption" style="margin-top:4px;">2 minutes ago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="position:relative;z-index:1;padding:14px;">
+                    <div class="flex gap-md">
+                        <div style="width:44px;height:44px;border-radius:12px;background:rgba(26,35,126,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        </div>
+                        <div style="flex:1;">
+                            <p class="text-primary" style="font-weight:600;font-size:14px;">New Member Request</p>
+                            <p class="text-secondary text-body-sm">James Kariuki wants to join</p>
+                            <p class="text-tertiary text-caption" style="margin-top:4px;">1 hour ago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-md" style="margin-top:20px;position:relative;z-index:1;">Yesterday</p>
+                
+                <div class="card" style="position:relative;z-index:1;padding:14px;">
+                    <div class="flex gap-md">
+                        <div style="width:44px;height:44px;border-radius:12px;background:var(--warning-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div style="flex:1;">
+                            <p class="text-primary" style="font-weight:600;font-size:14px;">Loan Approved</p>
+                            <p class="text-secondary text-body-sm">Your loan of KSh 30,000 approved</p>
+                            <p class="text-tertiary text-caption" style="margin-top:4px;">Yesterday, 3:45 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="position:relative;z-index:1;padding:14px;">
+                    <div class="flex gap-md">
+                        <div style="width:44px;height:44px;border-radius:12px;background:rgba(26,35,126,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+                        </div>
+                        <div style="flex:1;">
+                            <p class="text-primary" style="font-weight:600;font-size:14px;">Meeting Reminder</p>
+                            <p class="text-secondary text-body-sm">Group meeting tomorrow at 2:00 PM</p>
+                            <p class="text-tertiary text-caption" style="margin-top:4px;">Yesterday, 10:00 AM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-tertiary text-caption mb-md" style="margin-top:20px;position:relative;z-index:1;">This Week</p>
+                
+                <div class="card" style="position:relative;z-index:1;padding:14px;">
+                    <div class="flex gap-md">
+                        <div style="width:44px;height:44px;border-radius:12px;background:var(--error-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
+                        <div style="flex:1;">
+                            <p class="text-primary" style="font-weight:600;font-size:14px;">Payment Due</p>
+                            <p class="text-secondary text-body-sm">Your contribution is due in 2 days</p>
+                            <p class="text-tertiary text-caption" style="margin-top:4px;">Monday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+            
+            document.getElementById(screenId).classList.add('active');
+            
+            // Update nav active state
+            const navLinks = document.querySelectorAll('.nav a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('onclick')?.includes(screenId)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            window.scrollTo(0, 0);
+        }
+        
+        // Show first screen by default
+        document.addEventListener('DOMContentLoaded', function() {
+            showScreen('welcome');
+        });
+    </script>
+</body>
+</html>
