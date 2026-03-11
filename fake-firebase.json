@@ -1,8 +1,0 @@
-{ "type": "service_account",
-  "project_id": "chamaa-dev",
-  "private_key_id": "fake",
-  "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA2a2rwplBQLzHPZe5TNJT5sGqbCMBOp0cGkBGmDHMbcBWvhbl\nMIIEowIBAAKCAQEA2a2rwplBQLzHPZe5TNJT5sGqbCMBOp0cGkBGmDHMbcBWvhbl\n-----END RSA PRIVATE KEY-----\n",
-  "client_email": "fake@chamaa-dev.iam.gserviceaccount.com",
-  "client_id": "123456789",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token"} 

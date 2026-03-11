@@ -1,250 +1,391 @@
-# Chamaa API
+# Chamaa.API
 
-A community-based lending platform REST API built with Spring Boot, featuring blockchain integration for secure loan management.
+<p align="center">
+  <a href="https://github.com/flow-pie/chamaa.api/actions/workflows/build.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/flow-pie/chamaa.api/build.yml?branch=main" alt="Build Status">
+  </a>
+  <a href="https://github.com/flow-pie/chamaa.api/issues">
+    <img src="https://img.shields.io/github/issues/flow-pie/chamaa.api" alt="GitHub Issues">
+  </a>
+  <a href="https://github.com/flow-pie/chamaa.api/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/flow-pie/chamaa.api" alt="License">
+  </a>
+  <a href="https://discord.gg/chamaa">
+    <img src="https://img.shields.io/discord/123456789" alt="Discord">
+  </a>
+</p>
 
-## Quick Start
+> A community-based lending platform with blockchain integration for transparent and secure loan management in African communities.
 
-### Prerequisites
-- Java 17+
-- Maven 3.8+
-- PostgreSQL 12+
+## About
 
-### Installation
+Chamaa.API is an open-source platform enabling community-driven savings groups (chamas) with transparent ledger systems, blockchain-secured transactions, and mobile-first access. The project implements a full-stack monorepo with a Spring Boot backend and Android mobile application.
 
-1. Clone the repository:
-```bash
-git clone https://github.com/flow-pie/chamaa.api
-cd chamaa.api
-```
+## Features
 
-2. Configure environment variables:
-```bash
-# Copy the example environment file
-cp .env.example .env
-
-# Edit .env with your local configuration
-nano .env
-```
-
-3. Build the project:
-```bash
-./mvnw clean install
-```
-
-4. Run the application:
-```bash
-./mvnw spring-boot:run
-```
-
-The API will be available at `http://localhost:8080/api`
-
-## Documentation
-
-- [API Specification](docs/api-spec.md) - Complete API endpoints documentation
-- [Architecture](docs/architecture.md) - Project structure and design patterns
-- [Blockchain Integration](docs/blockchain.md) - Blockchain service details
+- **User Management** - Registration, authentication, and profile management
+- **Group Management** - Create and manage community lending groups (chamas)
+- **Loan System** - Request, approve, and track loans within groups
+- **Wallet & Transactions** - Deposit, withdraw, and transaction history
+- **Blockchain Integration** - Polygon network integration for transparent transactions
+- **Android Mobile App** - Native Android application with offline support
+- **Payment Integration** - M-Pesa, Airtel Money, PayPal support (planned)
 
 ## Project Structure
 
 ```
-chamaa-api/
-├── pom.xml                                    # Maven configuration
-├── src/
-│   ├── main/
-│   │   ├── java/com/chamaa/
-│   │   │   ├── ChamaaApplication.java        # Main application entry
-│   │   │   ├── config/                       # Configuration classes
-│   │   │   ├── common/                       # Shared utilities
-│   │   │   ├── entities/                     # JPA entities
-│   │   │   ├── repositories/                 # Data access layer
-│   │   │   ├── services/                     # Business logic
-│   │   │   ├── controllers/                  # REST endpoints
-│   │   │   └── blockchain/                   # Blockchain services
-│   │   └── resources/
-│   │       ├── application.properties        # Configuration
-│   │       └── db/schema.sql                 # Database schema
-│   └── test/
-│       └── java/com/chamaa/                  # Unit tests
-├── docs/
-│   ├── api-spec.md                          # API documentation
-│   ├── architecture.md                      # Architecture guide
-│   └── blockchain.md                        # Blockchain integration
-└── README.md
+chamaa.api/
+├── apps/
+│   ├── backend/                    # Spring Boot REST API
+│   │   ├── src/main/java/com/chamaa/
+│   │   │   ├── blockchain/         # Blockchain integration (Web3j)
+│   │   │   ├── common/            # Shared utilities & exceptions
+│   │   │   ├── config/            # Configuration classes
+│   │   │   ├── controllers/       # REST API endpoints
+│   │   │   ├── entities/          # JPA entities
+│   │   │   ├── repositories/      # Data access layer
+│   │   │   └── services/          # Business logic
+│   │   └── pom.xml
+│   │
+│   └── android/
+│       └── ChamaApp/              # Android mobile app
+│           └── app/
+│               └── src/main/java/com/example/chama/
+│                   ├── network/   # Retrofit + OkHttp client
+│                   ├── models/    # Data models
+│                   └── ui/        # Jetpack Compose screens
+│
+├── docs/                          # Documentation
+│   ├── api-spec.md               # API specification
+│   ├── architecture.md           # Architecture overview
+│   ├── blockchain.md             # Blockchain integration guide
+│   ├── DATABASE_SETUP.md         # Database configuration
+│   ├── DOCKER_GUIDE.md           # Docker deployment guide
+│   └── CI_CD_PIPELINE.md         # CI/CD documentation
+│
+├── infra/                        # Infrastructure configurations
+├── .github/                      # GitHub Actions workflows
+├── README.md                     # This file
+├── ROADMAP.md                    # Project roadmap
+├── CONTRIBUTING.md               # Contribution guidelines
+└── LICENSE                       # MIT License
 ```
 
-## 🔧 Configuration
+## Tech Stack
+
+### Backend
+| Component | Technology |
+|-----------|------------|
+| Framework | Spring Boot 3.2 |
+| Language | Java 17+ |
+| Database | PostgreSQL (prod), H2 (dev) |
+| ORM | Spring Data JPA / Hibernate |
+| Security | Spring Security + Firebase Auth |
+| Blockchain | Web3j (Polygon) |
+| Build Tool | Maven |
+
+### Android App
+| Component | Technology |
+|-----------|------------|
+| Language | Kotlin |
+| UI Framework | Jetpack Compose |
+| Architecture | MVVM |
+| Networking | Retrofit 2 + OkHttp |
+| Local Database | Room |
+| DI | Hilt (planned) |
+| Build Tool | Gradle (Kotlin DSL) |
+
+## Getting Started
+
+### Prerequisites
+
+| Tool | Version | Notes |
+|------|---------|-------|
+| Java | 17+ | Required for backend |
+| Maven | 3.8+ | For backend build |
+| Android Studio | Ladybug+ | For Android development |
+| JDK | 11+ | For Android build |
+| Git | 2.0+ | Version control |
+| Docker | 24+ | Optional, for containerized deployment |
+
+### Backend Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/flow-pie/chamaa.api.git
+   cd chamaa.api
+   ```
+
+2. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
+
+3. **Run the backend**
+   ```bash
+   cd apps/backend
+   ./mvnw spring-boot:run
+   ```
+
+   The API will be available at `http://localhost:8080/api`
+
+4. **Run tests**
+   ```bash
+   cd apps/backend
+   ./mvnw clean test
+   ```
+
+### Android App Setup
+
+1. **Open in Android Studio**
+   ```
+   apps/android/ChamaApp
+   ```
+
+2. **Build the debug APK**
+   ```bash
+   cd apps/android/ChamaApp
+   ./gradlew assembleDebug
+   ```
+
+3. **Install on emulator/device**
+   ```bash
+   ./gradlew installDebug
+   ```
+
+   > **Note:** For emulator, the app connects to host machine at `10.0.2.2:8080`
+
+### Running with Docker
+
+```bash
+# Backend only with H2 (development)
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+# Full stack with PostgreSQL
+docker-compose up
+```
+
+See [DOCKER_GUIDE.md](docs/DOCKER_GUIDE.md) for detailed Docker configuration.
+
+## API Reference
+
+### Users
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/users` | Create new user |
+| GET | `/api/users/{id}` | Get user by ID |
+| GET | `/api/users` | List all users |
+| PUT | `/api/users/{id}` | Update user |
+| DELETE | `/api/users/{id}` | Delete user |
+
+### Groups
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/groups` | Create new group |
+| GET | `/api/groups/{id}` | Get group by ID |
+| GET | `/api/groups` | List all groups |
+| PUT | `/api/groups/{id}` | Update group |
+| DELETE | `/api/groups/{id}` | Delete group |
+
+### Loans
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/loans` | Request loan |
+| GET | `/api/loans/{id}` | Get loan by ID |
+| GET | `/api/loans` | List all loans |
+| PUT | `/api/loans/{id}/approve` | Approve loan |
+| PUT | `/api/loans/{id}/reject` | Reject loan |
+
+### Wallets
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/wallets/{userId}` | Get wallet balance |
+| POST | `/api/wallets/{userId}/deposit` | Deposit funds |
+| POST | `/api/wallets/{userId}/withdraw` | Withdraw funds |
+| GET | `/api/wallets/{userId}/transactions` | Transaction history |
+
+### Request Example
+
+```bash
+# Create a user
+curl -X POST http://localhost:8080/api/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phoneNumber": "+254712345678"
+  }'
+
+# Create a group
+curl -X POST http://localhost:8080/api/groups \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Community Savings",
+    "description": "Monthly savings group",
+    "creatorId": 1,
+    "targetAmount": 10000.0
+  }'
+
+# Request a loan
+curl -X POST http://localhost:8080/api/loans \
+  -H "Content-Type: application/json" \
+  -d '{
+    "borrowerId": 1,
+    "groupId": 1,
+    "amount": 5000.0,
+    "durationInMonths": 12,
+    "purpose": "Business expansion"
+  }'
+```
+
+## Configuration
 
 ### Environment Variables
-All sensitive configuration is managed through environment variables. Copy `.env.example` to `.env` and configure your values:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `PORT` | Server port | `8080` |
+| `DB_URL` | PostgreSQL connection URL | - |
+| `DB_USERNAME` | Database username | - |
+| `DB_PASSWORD` | Database password | - |
+| `JPA_DDL_AUTO` | JPA schema strategy | `create-drop` |
+| `POLYGON_RPC_URL` | Polygon RPC endpoint | - |
+| `POLYGON_CHAIN_ID` | Polygon chain ID | `80001` |
+| `LOG_LEVEL_ROOT` | Root logging level | `INFO` |
+
+### Profile-Specific Configuration
 
 ```bash
-cp .env.example .env
-```
-
-**Core Environment Variables:**
-- `PORT` - Server port (default: 8080)
-- `DB_URL` - PostgreSQL connection URL
-- `DB_USERNAME` - Database username
-- `DB_PASSWORD` - Database password
-- `JPA_DDL_AUTO` - JPA DDL strategy (validate, update, create, create-drop)
-- `POLYGON_RPC_URL` - Polygon RPC endpoint
-- `POLYGON_CHAIN_ID` - Polygon chain ID
-
-**Logging Levels:**
-- `LOG_LEVEL_ROOT` - Root logging level
-- `LOG_LEVEL_CHAMAA` - Chamaa application logging level
-- `LOG_LEVEL_SPRING_WEB` - Spring Web logging level
-- `LOG_LEVEL_HIBERNATE` - Hibernate logging level
-
-**⚠️ Security Notes:**
-- **Never commit `.env` file** - it's excluded in `.gitignore`
-- **Always use `.env.example`** for defaults and documentation
-- In production, use a secrets manager (Vault, AWS Secrets Manager, etc.)
-- Environment variables override `.env` file values
-
-## Database
-
-The application uses a sophisticated database setup with support for both development and production environments:
-
-### Databases Supported
-- **PostgreSQL** (Production & Staging) - Relational database with full ACID compliance
-- **H2** (Development & Testing) - In-memory database with PostgreSQL mode for compatibility
-
-### Key Features
-- **Spring Data JPA** with Hibernate ORM for object-relational mapping
-- **HikariCP** connection pooling for efficient resource management
-- **Flyway** database migrations for versioned schema changes
-- **Lazy loading** on all relationships to prevent N+1 queries
-- **Strategic indexes** on frequently queried columns for performance
-- **Cascade/Restrict delete** policies for data integrity
-
-### Tables
-- **users** - User accounts with validation
-- **groups** - Community lending groups
-- **wallets** - User wallets with balance tracking
-- **transactions** - Transaction history between wallets
-- **loans** - Loan records within groups
-
-### Running with Different Databases
-
-**Development (H2 - Default)**
-```bash
+# Development (H2 in-memory)
 ./mvnw spring-boot:run
-# Uses H2 in-memory database
-# Schema auto-created with create-drop strategy
-```
 
-**Development (with Docker PostgreSQL)**
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
-# Starts PostgreSQL in Docker for realistic testing
-```
-
-**Production (PostgreSQL)**
-```bash
+# Production (PostgreSQL)
 SPRING_PROFILES_ACTIVE=prod ./mvnw spring-boot:run
-# Requires FLYWAY_ENABLED=true for migration execution
-# Uses validate strategy (no auto schema changes)
 ```
 
-### Database Configuration
-- See [DATABASE_SETUP.md](docs/DATABASE_SETUP.md) for comprehensive database documentation
-- Configure via environment variables: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`
-- Connection pool settings: `DB_POOL_SIZE`, `DB_MIN_IDLE`
+See [.env.example](.env.example) for all available configuration options.
 
-## Security
+## Development
 
-- Passwords encrypted using BCrypt
-- Spring Security integration
-- JWT token support (to be implemented)
-- API request validation
+### Code Style
 
-## Testing
+- **Backend**: Follows Spring Boot conventions, Google Java Style
+- **Android**: Kotlin coding conventions, Jetpack Compose guidelines
 
-Run unit tests:
+### Running Tests
+
 ```bash
+# Backend unit tests
+cd apps/backend
 ./mvnw test
-```
 
-Run all tests with coverage:
-```bash
+# Backend tests with coverage report
 ./mvnw clean test jacoco:report
+
+# Run specific test class
+./mvnw test -Dtest=UserServiceTest
+
+# Run specific test method
+./mvnw test -Dtest=UserServiceTest#testCreateUser
 ```
 
-### Database Testing
-The application includes comprehensive tests with:
-- H2 in-memory database for unit tests
-- JPA entity mapping validation
-- Service layer business logic tests
-- All tests use PostgreSQL-compatible H2 mode
+### Database Schema
 
-## API Examples
+The application uses the following core entities:
+- **User** - User accounts with authentication
+- **Group** - Community lending groups
+- **Loan** - Loan records within groups
+- **Wallet** - User wallet with balance tracking
+- **Transaction** - Transaction history
 
-### Create User
-```bash
-POST /api/users
-Content-Type: application/json
+See [DATABASE_SETUP.md](docs/DATABASE_SETUP.md) for detailed schema documentation.
 
-{
-  "email": "john@example.com",
-  "password": "password123",
-  "firstName": "John",
-  "lastName": "Doe",
-  "phoneNumber": "+254712345678"
-}
+## Contributing
+
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting PRs.
+
+### Quick Start for Contributors
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Make your changes
+4. Run tests and ensure code quality
+5. Commit with conventional commits: `git commit -m "feat: add new feature"`
+6. Push and create a Pull Request
+
+### Issue Labels
+
+| Label | Description |
+|-------|-------------|
+| `good first issue` | Beginner-friendly tasks |
+| `help wanted` | Community assistance needed |
+| `backend` | Backend/API work |
+| `android` | Android app development |
+| `blockchain` | Blockchain integration |
+| `documentation` | Docs improvements |
+
+### Commit Message Format
+
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(<scope>): <description>
+
+Types: feat, fix, docs, style, refactor, test, chore
 ```
 
-### Create Group
-```bash
-POST /api/groups
-Content-Type: application/json
-
-{
-  "name": "Community Savings",
-  "description": "Group for community savings",
-  "creatorId": 1,
-  "targetAmount": 10000.0
-}
+Example:
+```
+feat(wallet): add transaction history endpoint
+fix(api): resolve user authentication bug
+docs(readme): update setup instructions
 ```
 
-### Request Loan
-```bash
-POST /api/loans
-Content-Type: application/json
+## Roadmap
 
-{
-  "borrowerId": 1,
-  "groupId": 1,
-  "amount": 5000.0,
-  "durationInMonths": 12,
-  "purpose": "Business expansion"
-}
-```
+The project is organized into 8 phases. See [ROADMAP.md](ROADMAP.md) for detailed progress and future plans.
 
-## CI/CD
+| Phase | Focus | Status |
+|-------|-------|--------|
+| 1 | Project Setup | Complete |
+| 2 | Infrastructure | In Progress |
+| 3 | Core API Features | Planned |
+| 4 | Blockchain Layer | Planned |
+| 5 | Governance & Voting | Planned |
+| 6 | Mobile App (Android) | In Progress |
+| 7 | DevOps & Scaling | Planned |
+| 8 | Long-term Goals | Planned |
 
-GitHub Actions workflow for:
-- Build verification
-- Unit tests
-- Code quality checks
-- Automated deployment
+## Resources
 
-## Blockchain Integration
+- 📖 [API Documentation](docs/api-spec.md)
+- 🏗️ [Architecture Guide](docs/architecture.md)
+- ⛓️ [Blockchain Integration](docs/blockchain.md)
+- 🐳 [Docker Guide](docs/DOCKER_GUIDE.md)
+- 📊 [Database Setup](docs/DATABASE_SETUP.md)
+- 🔄 [CI/CD Pipeline](docs/CI_CD_PIPELINE.md)
 
-Built with Polygon network support via Web3j:
-- Smart contract deployment
-- Transaction recording
-- Loan agreement execution
-- Payment verification
+## Community
 
-## Dependencies
+- 💬 [Discord](https://discord.gg/chamaa)
+- 💻 [GitHub Discussions](https://github.com/flow-pie/chamaa.api/discussions)
+- 🐛 [Issue Tracker](https://github.com/flow-pie/chamaa.api/issues)
 
-- Spring Boot 3.2.0
-- Spring Data JPA
-- Spring Security
-- MySQL Connector
-- Lombok
-- Web3j
-- JUnit 5
-- Springdoc OpenAPI (Swagger)
+## License
 
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+
+## Acknowledgments
+
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Jetpack Compose](https://developer.android.com/jetpack/compose)
+- [Web3j](https://web3j.io/)
+- All contributors and community members
+
+---
+
+<p align="center">
+  Built with ❤️ by the Chamaa community
+</p>
